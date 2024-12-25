@@ -93,6 +93,7 @@ func (b *Browser) register() {
 		matchers.NewInternetExplorer(parser),
 		matchers.NewSamsungBrowser(parser),
 		matchers.NewSilkBrowser(parser),
+		matchers.NewCocCoc(parser),
 		matchers.NewSogouBrowser(parser),
 		matchers.NewVivaldi(parser),
 		matchers.NewVivoBrowser(parser),
@@ -441,6 +442,17 @@ func (b *Browser) IsSamsungBrowser() bool {
 // https://docs.aws.amazon.com/silk/
 func (b *Browser) IsSilkBrowser() bool {
 	if _, ok := b.getMatcher().(*matchers.SilkBrowser); ok {
+		return true
+	}
+
+	return false
+}
+
+// IsCocCoc returns true if the browser is Coc Coc.
+//
+// https://coccoc.com/en/
+func (b *Browser) IsCocCoc() bool {
+	if _, ok := b.getMatcher().(*matchers.CocCoc); ok {
 		return true
 	}
 

@@ -1046,3 +1046,23 @@ func TestBrowserIsVivaldi(t *testing.T) {
 		})
 	})
 }
+
+func TestBrowserIsCocCoc(t *testing.T) {
+	Convey("Subject: #IsCocCoc", t, func() {
+		Convey("When the browser is Coc Coc", func() {
+			Convey("It should return true", func() {
+				ua := testUserAgents["coc-coc"]
+				b, _ := NewBrowser(ua.Android)
+				So(b.IsCocCoc(), ShouldBeTrue)
+			})
+		})
+
+		Convey("When the browser is not CocCoc", func() {
+			Convey("It should return false", func() {
+				ua := testUserAgents["chrome"]
+				b, _ := NewBrowser(ua.Android)
+				So(b.IsCocCoc(), ShouldBeFalse)
+			})
+		})
+	})
+}
