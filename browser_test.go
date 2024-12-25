@@ -784,6 +784,26 @@ func TestBrowserIsSamsungBrowser(t *testing.T) {
 	})
 }
 
+func TestBrowserIsSilkBrowser(t *testing.T) {
+	Convey("Subject: #IsSilkBrowser", t, func() {
+		Convey("When the browser is Silk Browser", func() {
+			Convey("It should return true", func() {
+				ua := testUserAgents["silk-browser"]
+				b, _ := NewBrowser(ua.Android)
+				So(b.IsSilkBrowser(), ShouldBeTrue)
+			})
+		})
+
+		Convey("When the browser is not Silk Browser", func() {
+			Convey("It should return false", func() {
+				ua := testUserAgents["chrome"]
+				b, _ := NewBrowser(ua.Android)
+				So(b.IsSilkBrowser(), ShouldBeFalse)
+			})
+		})
+	})
+}
+
 func TestBrowserIsSougouBrowser(t *testing.T) {
 	Convey("Subject: #IsSougouBrowser", t, func() {
 		Convey("When the browser is Sougou Browser", func() {
