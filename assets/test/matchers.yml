@@ -20,6 +20,10 @@ chrome:
   linux: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
   mac: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36
   windows: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36
+coc-coc:
+  android: Mozilla/5.0 (Linux; Android 9.0.99; MYNETTV-2H) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/80.0.232 Chrome/74.0.3729.232 Safari/537.36
+  mac: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/94.0.210 Chrome/88.0.4324.210 Safari/537.36
+  windows: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/56.3.162 Chrome/50.3.2661.162 Safari/537.36
 duck_duck_go:
   android: Mozilla/5.0 (Linux; Android 9) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.132 Mobile Safari/537.36 DuckDuckGo/5
   ios: DuckDuckGo/2 CFNetwork/897.15 Darwin/17.5.0
