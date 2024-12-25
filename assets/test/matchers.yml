@@ -132,6 +132,8 @@ samsung-browser:
   ios: Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.20 (KHTML, like Gecko) SamsungBrowser/5.4 Chrome/51.0.2704.106 Mobile Safari/537.36
   linux: Mozilla/5.0 (SMART-TV; Linux; Tizen 2.3) AppleWebkit/538.1 (KHTML, like Gecko) SamsungBrowser/1.0 TV Safari/538.1
   windows: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/5.2 Chrome/51.0.2704.106 DEX Safari/537.36
+silk-browser:
+  android: Mozilla/5.0 (Linux; Android 9; KFMUWI) AppleWebKit/537.36 (KHTML, like Gecko) Silk/130.5.9 like Chrome/130.0.6723.142 Safari/537.36
 snapchat:
   android: Mozilla/5.0 (Linux; Android 7.1.1; Coolpad 3632A Build/NMF26F; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/60.0.3112.116 Mobile Safari/537.36 Snapchat/10.18.2.0 (Coolpad 3632A; Android 7.1.1#108560743#25; gzip)
   ios: Snapchat 10.22.2.0 (iPhone10,6; iOS 11.1.2; gzip)
