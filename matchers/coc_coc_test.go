@@ -56,7 +56,7 @@ func TestCocCocMatch(t *testing.T) {
 			})
 		})
 
-		Convey("When user agent does not match Silk Browser", func() {
+		Convey("When user agent does not match Coc Coc", func() {
 			Convey("It should return false", func() {
 				sb := NewCocCoc(NewUAParser(testUserAgents["chrome"].Android))
 				So(sb.Match(), ShouldBeFalse)
