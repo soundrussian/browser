@@ -101,6 +101,7 @@ func (b *Browser) register() {
 		matchers.NewYaaniBrowser(parser),
 		matchers.NewYandex(parser),
 		matchers.NewFirefox(parser),
+		matchers.NewAndroidBrowser(parser),
 		matchers.NewChrome(parser), // chrome should be before safari
 		matchers.NewSafari(parser), // chrome and safari must be at the end
 		matchers.NewUnknown(parser),
@@ -164,6 +165,19 @@ func (b *Browser) Device() *Device {
 // Bot returns the bot of the browser.
 func (b *Browser) Bot() *Bot {
 	return b.bot
+}
+
+// IsAndroidBrowser returns true if the browser is Android Browser
+//
+// Android WebView on Android >= 4.4 is purposefully being identified as Chrome
+//
+// https://developer.chrome.com/multidevice/webview/overview
+func (b *Browser) IsAndroidBrowser() bool {
+	if _, ok := b.getMatcher().(*matchers.AndroidBrowser); ok {
+		return true
+	}
+
+	return false
 }
 
 // IsAliPay returns true if the browser is AliPay.
