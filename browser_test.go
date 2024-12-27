@@ -357,6 +357,26 @@ func TestBrowserIsNokia(t *testing.T) {
 	})
 }
 
+func TestBrowserIsNintendo(t *testing.T) {
+	Convey("Subject: #IsNintendo", t, func() {
+		Convey("When the browser is Nintendo", func() {
+			Convey("It should return true", func() {
+				ua := testUserAgents["nintendo"]
+				b, _ := NewBrowser(ua.Linux)
+				So(b.IsNintendo(), ShouldBeTrue)
+			})
+		})
+
+		Convey("When the browser is not Nintendo", func() {
+			Convey("It should return false", func() {
+				ua := testUserAgents["chrome"]
+				b, _ := NewBrowser(ua.Linux)
+				So(b.IsNintendo(), ShouldBeFalse)
+			})
+		})
+	})
+}
+
 func TestBrowserIsUCBrowser(t *testing.T) {
 	Convey("Subject: #IsUCBrowser", t, func() {
 		Convey("When the browser is UC Browser", func() {
