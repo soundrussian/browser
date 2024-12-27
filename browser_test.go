@@ -317,6 +317,26 @@ func TestBrowserIsAlipay(t *testing.T) {
 	})
 }
 
+func TestBrowserIsAndroidBrowser(t *testing.T) {
+	Convey("Subject: #IsAndroidBrowser", t, func() {
+		Convey("When the browser is Android Browser", func() {
+			Convey("It should return true", func() {
+				ua := testUserAgents["android-browser"]
+				b, _ := NewBrowser(ua.Android)
+				So(b.IsAndroidBrowser(), ShouldBeTrue)
+			})
+
+			Convey("When the browser is not Android Browser", func() {
+				Convey("It should return false", func() {
+					ua := testUserAgents["chrome"]
+					b, _ := NewBrowser(ua.Android)
+					So(b.IsAndroidBrowser(), ShouldBeFalse)
+				})
+			})
+		})
+	})
+}
+
 func TestBrowserIsNokia(t *testing.T) {
 	Convey("Subject: #IsNokia", t, func() {
 		Convey("When the browser is Nokia", func() {
