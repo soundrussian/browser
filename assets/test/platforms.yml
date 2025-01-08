@@ -71,6 +71,11 @@ linux: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) At
 mac-os: XMind/10.2.1.202007271856 (darwin.x64; macOS Arch/x64 Version/11.0.1; en-US) Electron/5.0.13
 mac-os-1: MOZILLA/5.0 (MACINTOSH; INTEL MAC OS X 10_14_6) APPLEWEBKIT/537.36 (KHTML LIKE GECKO) CHROME/94.0.4606.61 SAFARI/537.36
 mac-os-x: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11) AppleWebKit/537.36 (KHTML, like Gecko) NativefierPlaceholder/0.0.1 Chrome/47.0.2526.73 Electron/0.36.4 Safari/537.36
+playstation-3: Mozilla/5.0 (PLAYSTATION 3 4.91) AppleWebKit/531.22.8 (KHTML, like Gecko)
+playstation-4: Mozilla/5.0 (PlayStation; PlayStation 4/12.00) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15
+playstation-5: Mozilla/5.0 (PlayStation; PlayStation 5/10.40; PlayStation 4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Safari/605.1.15
+playstation-smarttv: Mozilla/5.0 (PlayStation 5/SmartTV) AppleWebKit/605.1.15 (KHTML, like Gecko)
+playstation-vita: Mozilla/5.0 (PlayStation Vita 3.74) AppleWebKit/537.73 (KHTML, like Gecko) Silk/3.2
 windows-10: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Atom/1.6.2 Chrome/45.0.2454.85 Electron/0.34.5 Safari/537.36
 windows-7: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0; Wildfire NoTrail; ProE-Datecode:3302014090)
 windows-8: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) your-app/0.1.0 Chrome/41.0.2272.76 Electron/0.24.0 Safari/537.36

@@ -273,6 +273,27 @@ func TestPlatformIsBlackberry(t *testing.T) {
 	})
 }
 
+func TestPlatformIsPlaystation(t *testing.T) {
+	Convey("Given a user agent string", t, func() {
+		Convey("When the platform is Playstation", func() {
+			Convey("It returns true", func() {
+				platforms := []string{"playstation-3", "playstation-4", "playstation-5", "playstation-vita"}
+				for _, platform := range platforms {
+					p, _ := NewPlatform(testPlatforms[platform])
+					So(p.IsPlaystation(), ShouldBeTrue)
+				}
+			})
+		})
+
+		Convey("When the platform is not Playstation", func() {
+			p, _ := NewPlatform(testPlatforms["linux"])
+			Convey("It returns false", func() {
+				So(p.IsPlaystation(), ShouldBeFalse)
+			})
+		})
+	})
+}
+
 func TestPlatformIsWindowsMobile(t *testing.T) {
 	Convey("Given a user agent string", t, func() {
 		Convey("When the platform is Windows Mobile", func() {
