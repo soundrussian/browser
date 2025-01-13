@@ -58,6 +58,7 @@ func (p *Platform) register() {
 		platforms.NewLinux(parser),
 		platforms.NewFirefoxOS(parser),
 		platforms.NewChromeOS(parser),
+		platforms.NewNintendo(parser),
 		platforms.NewPlaystation(parser),
 		platforms.NewUnknown(parser),
 	}
@@ -179,6 +180,15 @@ func (p *Platform) IsLinux() bool {
 // IsBlackBerry returns true if platform is BlackBerry.
 func (p *Platform) IsBlackBerry() bool {
 	if _, ok := p.getMatcher().(*platforms.BlackBerry); ok {
+		return true
+	}
+
+	return false
+}
+
+// IsLinux returns true if the platform is Nintendo.
+func (p *Platform) IsNintendo() bool {
+	if _, ok := p.getMatcher().(*platforms.Nintendo); ok {
 		return true
 	}
 
