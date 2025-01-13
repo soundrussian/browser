@@ -52,6 +52,7 @@ func (p *Platform) register() {
 		platforms.NewWatchOS(parser),
 		platforms.NewWindowsMobile(parser),
 		platforms.NewWindowsPhone(parser),
+		platforms.NewXbox(parser), // Should come before Windows
 		platforms.NewWindows(parser),
 		platforms.NewKindle(parser), // Should come before Android
 		platforms.NewAndroid(parser),
@@ -351,5 +352,14 @@ func (p *Platform) IsWindowsTouchScreenDesktop() bool {
 	if p.IsWindows() && strings.Contains(p.userAgent, "Touch") {
 		return true
 	}
+	return false
+}
+
+// IsXbox returns true if the platform is Xbox.
+func (p *Platform) IsXbox() bool {
+	if _, ok := p.getMatcher().(*platforms.Xbox); ok {
+		return true
+	}
+
 	return false
 }
