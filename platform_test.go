@@ -634,3 +634,24 @@ func TestPlatformIsWindowsTouchScreenDesktop(t *testing.T) {
 		})
 	})
 }
+
+func TestPlatformIsXbox(t *testing.T) {
+	Convey("Given a user agent string", t, func() {
+		Convey("When the platform is Xbox", func() {
+			p, _ := NewPlatform(testPlatforms["xbox"])
+			Convey("It returns true", func() {
+				So(p.IsXbox(), ShouldBeTrue)
+			})
+		})
+
+		Convey("When the platform is not Xbox", func() {
+			Convey("It returns false", func() {
+				platforms := []string{"windows-10", "windows-8", "windows-7", "windows-xp"}
+				for _, platform := range platforms {
+					p, _ := NewPlatform(testPlatforms[platform])
+					So(p.IsXbox(), ShouldBeFalse)
+				}
+			})
+		})
+	})
+}
