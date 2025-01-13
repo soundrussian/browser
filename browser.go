@@ -72,6 +72,7 @@ func (b *Browser) register() {
 		matchers.NewNokia(parser),
 		matchers.NewNintendo(parser),
 		matchers.NewUCBrowser(parser),
+		matchers.NewBaidu(parser),
 		matchers.NewBlackBerry(parser),
 		matchers.NewBrave(parser),
 		matchers.NewOpera(parser),
@@ -186,6 +187,17 @@ func (b *Browser) IsAndroidBrowser() bool {
 // https://www.alipay.com/
 func (b *Browser) IsAlipay() bool {
 	if _, ok := b.getMatcher().(*matchers.Alipay); ok {
+		return true
+	}
+
+	return false
+}
+
+// IsBaidu returns true if the browser is Baidu.
+//
+// http://liulanqi.baidu.com/
+func (b *Browser) IsBaidu() bool {
+	if _, ok := b.getMatcher().(*matchers.Baidu); ok {
 		return true
 	}
 

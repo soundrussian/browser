@@ -337,6 +337,26 @@ func TestBrowserIsAndroidBrowser(t *testing.T) {
 	})
 }
 
+func TestBrowserIsBaidu(t *testing.T) {
+	Convey("Subject: #IsBaidu", t, func() {
+		Convey("When the browser is Baidu", func() {
+			Convey("It should return true", func() {
+				ua := testUserAgents["baidu"]
+				b, _ := NewBrowser(ua.Android)
+				So(b.IsBaidu(), ShouldBeTrue)
+			})
+		})
+
+		Convey("When the browser is not Baidu", func() {
+			Convey("It should return false", func() {
+				ua := testUserAgents["chrome"]
+				b, _ := NewBrowser(ua.Android)
+				So(b.IsBaidu(), ShouldBeFalse)
+			})
+		})
+	})
+}
+
 func TestBrowserIsNokia(t *testing.T) {
 	Convey("Subject: #IsNokia", t, func() {
 		Convey("When the browser is Nokia", func() {
