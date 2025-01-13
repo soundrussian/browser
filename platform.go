@@ -53,6 +53,7 @@ func (p *Platform) register() {
 		platforms.NewWindowsMobile(parser),
 		platforms.NewWindowsPhone(parser),
 		platforms.NewWindows(parser),
+		platforms.NewKindle(parser), // Should come before Android
 		platforms.NewAndroid(parser),
 		platforms.NewLinux(parser),
 		platforms.NewFirefoxOS(parser),
@@ -151,6 +152,15 @@ func (p *Platform) IsWatchOS() bool {
 // IsKaiOS returns true if the user agent string matches KaiOS.
 func (p *Platform) IsKaiOS() bool {
 	if _, ok := p.getMatcher().(*platforms.KaiOS); ok {
+		return true
+	}
+
+	return false
+}
+
+// IsKindle returns true if the user agent string matches Kindle.
+func (p *Platform) IsKindle() bool {
+	if _, ok := p.getMatcher().(*platforms.Kindle); ok {
 		return true
 	}
 

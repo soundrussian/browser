@@ -237,6 +237,24 @@ func TestPlatformIsKaiOS(t *testing.T) {
 	})
 }
 
+func TestPlatformIsKindle(t *testing.T) {
+	Convey("Given a user agent string", t, func() {
+		Convey("When the platform is Kindle", func() {
+			p, _ := NewPlatform(testPlatforms["kindle"])
+			Convey("It returns true", func() {
+				So(p.IsKindle(), ShouldBeTrue)
+			})
+		})
+
+		Convey("When the platform is not Kindle", func() {
+			p, _ := NewPlatform(testPlatforms["blackberry"])
+			Convey("It returns false", func() {
+				So(p.IsKindle(), ShouldBeFalse)
+			})
+		})
+	})
+}
+
 func TestPlatformIsLinux(t *testing.T) {
 	Convey("Given a user agent string", t, func() {
 		Convey("When the platform is Linux", func() {
