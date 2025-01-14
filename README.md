@@ -1,5 +1,10 @@
 # browser [![MIT](https://img.shields.io/github/license/dineshgowda24/browser)](https://github.com/dineshgowda24/browser/blob/main/LICENSE) [![Go Reference](https://pkg.go.dev/badge/github.com/dineshgowda24/browser.svg)](https://pkg.go.dev/github.com/dineshgowda24/browser) [![Go report card](https://goreportcard.com/badge/github.com/dineshgowda24/browser)](https://goreportcard.com/report/github.com/dineshgowda24/browser) [![Build Status](https://dl.circleci.com/status-badge/img/circleci/MQTLZJuBejHgr2yqrojz3u/5NTLeuQeViQw2JaPQf7gKa/tree/main.svg?style=shield&circle-token=ab7a417fe410b8387c767f83568f7d2f2788ac4f)](https://dl.circleci.com/status-badge/redirect/circleci/MQTLZJuBejHgr2yqrojz3u/5NTLeuQeViQw2JaPQf7gKa/tree/main) [![Coverage](https://codecov.io/gh/dineshgowda24/browser/graph/badge.svg?token=XUA2VJW5FU)](https://codecov.io/gh/dineshgowda24/browser) [![X](https://img.shields.io/twitter/follow/_dineshgowda)](https://twitter.com/_dineshgowda)
 
+## Fork description
+
+Forked from [dineshgowda24/browser](https://github.com/dineshgowda24/browser) to add support for some browsers
+and platforms we need.
+
 <p align="center">
   <img src="logo.png">
 </p>
@@ -28,7 +33,7 @@ For detailed documentation visit [browser.dineshgowda.com](https://browser.dines
 ## Usage
 
 ```go
-go get github.com/dineshgowda24/browser
+go get github.com/soundrussian/browser@v2.0.0
 ```
 
 ### Browser Detection
