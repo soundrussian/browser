@@ -655,3 +655,22 @@ func TestPlatformIsXbox(t *testing.T) {
 		})
 	})
 }
+
+func TestPlatformIsWebOS(t *testing.T) {
+	Convey("Given a user agent string", t, func() {
+		Convey("When the platform is WebOS", func() {
+			platforms := []string{"webos", "webos-hp"}
+			for _, platform := range platforms {
+				p, _ := NewPlatform(testPlatforms[platform])
+				So(p.IsWebOS(), ShouldBeTrue)
+			}
+		})
+
+		Convey("When the platform is not WebOS", func() {
+			Convey("It returns false", func() {
+				p, _ := NewPlatform(testPlatforms["android"])
+				So(p.IsWebOS(), ShouldBeFalse)
+			})
+		})
+	})
+}
