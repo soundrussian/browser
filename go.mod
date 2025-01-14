@@ -1,4 +1,4 @@
-module github.com/dineshgowda24/browser
+module github.com/soundrussian/browser
 
 go 1.19
 
