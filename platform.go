@@ -55,6 +55,7 @@ func (p *Platform) register() {
 		platforms.NewXbox(parser), // Should come before Windows
 		platforms.NewWindows(parser),
 		platforms.NewKindle(parser), // Should come before Android
+		platforms.NewWebOS(parser),  // Should come before Android
 		platforms.NewAndroid(parser),
 		platforms.NewLinux(parser),
 		platforms.NewFirefoxOS(parser),
@@ -358,6 +359,15 @@ func (p *Platform) IsWindowsTouchScreenDesktop() bool {
 // IsXbox returns true if the platform is Xbox.
 func (p *Platform) IsXbox() bool {
 	if _, ok := p.getMatcher().(*platforms.Xbox); ok {
+		return true
+	}
+
+	return false
+}
+
+// IsXbox returns true if the platform is WebOS.
+func (p *Platform) IsWebOS() bool {
+	if _, ok := p.getMatcher().(*platforms.WebOS); ok {
 		return true
 	}
 
