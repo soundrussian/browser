@@ -6,7 +6,7 @@ type TV struct {
 
 var (
 	tvName       = "TV"
-	tvMatchRegex = []string{`(?i)(\btv|Android.*?ADT-1|Nexus Player)`}
+	tvMatchRegex = []string{`(?i)(\btv|Android.*?ADT-1|Nexus Player|SmartTV)`}
 )
 
 func NewTV(p Parser) *TV {

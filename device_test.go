@@ -308,14 +308,16 @@ func TestDeviceIsTV(t *testing.T) {
 	Convey("Given a user agent string", t, func() {
 		Convey("When the device is a TV", func() {
 			Convey("It should return true", func() {
-				d, _ := NewDevice(testDevices["tv-1"])
-				So(d.IsTV(), ShouldBeTrue)
+				for _, ua := range []string{testDevices["tv-1"], testDevices["tv-2"], testDevices["tv-3"]} {
+					d, _ := NewDevice(ua)
+					So(d.IsTV(), ShouldBeTrue)
+				}
 			})
 		})
 
 		Convey("When the device is not a TV", func() {
 			Convey("It should return false", func() {
-				d, _ := NewDevice(testDevices["iphone-7"])
+				d, _ := NewDevice(testDevices["android-12"])
 				So(d.IsTV(), ShouldBeFalse)
 			})
 		})
