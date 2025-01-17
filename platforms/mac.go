@@ -3,7 +3,7 @@ package platforms
 import (
 	"strings"
 
-	"github.com/dineshgowda24/browser/utils"
+	"github.com/soundrussian/browser/utils"
 )
 
 type Mac struct {
