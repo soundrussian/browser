@@ -49,6 +49,7 @@ func (p *Platform) register() {
 		platforms.NewBlackBerry(parser),
 		platforms.NewKaiOS(parser),
 		platforms.NewIOS(parser),
+		platforms.NewMac(parser),
 		platforms.NewWatchOS(parser),
 		platforms.NewWindowsMobile(parser),
 		platforms.NewWindowsPhone(parser),
@@ -368,6 +369,15 @@ func (p *Platform) IsXbox() bool {
 // IsXbox returns true if the platform is WebOS.
 func (p *Platform) IsWebOS() bool {
 	if _, ok := p.getMatcher().(*platforms.WebOS); ok {
+		return true
+	}
+
+	return false
+}
+
+// IsMac returns true if the platform is MacOS
+func (p *Platform) IsMac() bool {
+	if _, ok := p.getMatcher().(*platforms.Mac); ok {
 		return true
 	}
 
