@@ -674,3 +674,22 @@ func TestPlatformIsWebOS(t *testing.T) {
 		})
 	})
 }
+
+func TestPlatformIsMacOS(t *testing.T) {
+	Convey("Given a user agent string", t, func() {
+		Convey("When the platform is MacOS", func() {
+			platforms := []string{"mac-os", "mac-os-1", "mac-os-x"}
+			for _, platform := range platforms {
+				p, _ := NewPlatform(testPlatforms[platform])
+				So(p.IsMac(), ShouldBeTrue)
+			}
+		})
+
+		Convey("When the platform is not MacOS", func() {
+			Convey("It returns false", func() {
+				p, _ := NewPlatform(testPlatforms["ios-7"])
+				So(p.IsMac(), ShouldBeFalse)
+			})
+		})
+	})
+}
