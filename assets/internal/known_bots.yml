@@ -21,7 +21,7 @@ archiveteam archivebot: ArchiveTeam ArchiveBot
 ask jeeves: Ask Jeeves
 asynchttpclient: Java http and WebSocket client library
 awe.sm: Awe.sm URL expander
-baidu: Baidu
+baiduspider: Baidu
 barkrowler: Barkrowler
 bdcbot: Big Data Corp
 becomebot: BecomeBot (become.com)
