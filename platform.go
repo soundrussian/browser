@@ -48,11 +48,11 @@ func (p *Platform) register() {
 		platforms.NewAdobeAir(parser),
 		platforms.NewBlackBerry(parser),
 		platforms.NewKaiOS(parser),
+		platforms.NewWindowsPhone(parser), // Should come before iOS because of window-phone-2 example
 		platforms.NewIOS(parser),
 		platforms.NewMac(parser),
 		platforms.NewWatchOS(parser),
 		platforms.NewWindowsMobile(parser),
-		platforms.NewWindowsPhone(parser),
 		platforms.NewXbox(parser), // Should come before Windows
 		platforms.NewWindows(parser),
 		platforms.NewKindle(parser), // Should come before Android

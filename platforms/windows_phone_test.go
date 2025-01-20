@@ -26,7 +26,7 @@ func TestWindowsPhoneVersion(t *testing.T) {
 	Convey("Subject: #Version", t, func() {
 		Convey("When the version is matched", func() {
 			Convey("It should return the version", func() {
-				wp := NewWindowsPhone(NewUAParser(testPlatforms["windows-phone"]))
+				wp := NewWindowsPhone(NewUAParser(testPlatforms["windows-phone-1"]))
 				So(wp.Version(), ShouldEqual, "10.0")
 			})
 		})
@@ -44,7 +44,8 @@ func TestWindowsPhoneMatch(t *testing.T) {
 	Convey("Subject: #Match", t, func() {
 		Convey("When user agent matches Windows Phone", func() {
 			Convey("It should return true", func() {
-				So(NewWindowsPhone(NewUAParser(testPlatforms["windows-phone"])).Match(), ShouldBeTrue)
+				So(NewWindowsPhone(NewUAParser(testPlatforms["windows-phone-1"])).Match(), ShouldBeTrue)
+				So(NewWindowsPhone(NewUAParser(testPlatforms["windows-phone-2"])).Match(), ShouldBeTrue)
 			})
 		})
 

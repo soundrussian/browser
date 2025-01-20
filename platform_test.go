@@ -351,10 +351,10 @@ func TestPlatformIsWindowsMobile(t *testing.T) {
 func TestPlatformIsWindowsPhone(t *testing.T) {
 	Convey("Given a user agent string", t, func() {
 		Convey("When the platform is Windows Phone", func() {
-			p, _ := NewPlatform(testPlatforms["windows-phone"])
-			Convey("It returns true", func() {
+			for _, platform := range []string{"windows-phone-1", "windows-phone-2"} {
+				p, _ := NewPlatform(testPlatforms[platform])
 				So(p.IsWindowsPhone(), ShouldBeTrue)
-			})
+			}
 		})
 
 		Convey("When the platform is not Windows Phone", func() {
