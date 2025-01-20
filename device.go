@@ -46,8 +46,8 @@ func (d *Device) register() {
 	// define all your device matchers here
 	matchers := []DeviceMatcher{
 		devices.NewBlackberryPlaybook(parser),
+		devices.NewIpad(parser), // iPad should come before iPhone for ipad-6 example
 		devices.NewIphone(parser),
-		devices.NewIpad(parser),
 		devices.NewIpodTouch(parser),
 		devices.NewKindleFire(parser),
 		devices.NewKindle(parser),

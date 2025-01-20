@@ -349,9 +349,10 @@ func TestDeviceIsTablet(t *testing.T) {
 	Convey("Given a user agent string", t, func() {
 		Convey("When the device is a tablet", func() {
 			Convey("It should return true", func() {
-				tablets := []string{testDevices["ipad-4"], testDevices["surface-1"], testDevices["bb-playbook-1"]}
-				for _, ua := range tablets {
-					d, _ := NewDevice(ua)
+				tablets := []string{"ipad-4", "surface-1", "bb-playbook-1", "ipad-6"}
+				for _, device := range tablets {
+					tablet := testDevices[device]
+					d, _ := NewDevice(tablet)
 					So(d.IsTablet(), ShouldBeTrue)
 				}
 			})

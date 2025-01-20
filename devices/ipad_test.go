@@ -30,6 +30,7 @@ func TestIpadMatch(t *testing.T) {
 				So(NewIpad(NewUAParser(testDevices["ipad-3"])).Match(), ShouldBeTrue)
 				So(NewIpad(NewUAParser(testDevices["ipad-4"])).Match(), ShouldBeTrue)
 				So(NewIpad(NewUAParser(testDevices["ipad-5"])).Match(), ShouldBeTrue)
+				So(NewIpad(NewUAParser(testDevices["ipad-6"])).Match(), ShouldBeTrue)
 			})
 		})
 
