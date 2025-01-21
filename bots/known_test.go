@@ -26,7 +26,7 @@ func TestKnownName(t *testing.T) {
 			}
 
 			for key, val := range bots {
-				k := NewKnown(testBots[key], bots)
+				k := NewKnown(testBots[key], CompileKnownBots(bots))
 
 				So(k.Name(), ShouldEqual, val)
 			}
@@ -45,7 +45,7 @@ func TestKnownMatch(t *testing.T) {
 		Convey("When user agent contains a keyword", func() {
 			Convey("It returns true", func() {
 				for key, _ := range known {
-					k := NewKnown(testBots[key], known)
+					k := NewKnown(testBots[key], CompileKnownBots(known))
 
 					So(k.Match(), ShouldBeTrue)
 				}
@@ -55,7 +55,7 @@ func TestKnownMatch(t *testing.T) {
 		Convey("When user agent does not contain a keyword", func() {
 			Convey("It returns false", func() {
 				u := "Mozilla/5.0 (Linux; Android 10.0.0; Nexus 7 Build/OPM1.171019.011) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3359.158 Safari/537.36"
-				So(NewKnown(u, known).Match(), ShouldBeFalse)
+				So(NewKnown(u, CompileKnownBots(known)).Match(), ShouldBeFalse)
 			})
 		})
 	})

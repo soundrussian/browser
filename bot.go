@@ -2,6 +2,7 @@ package browser
 
 import (
 	"embed"
+	"fmt"
 	"log"
 	"reflect"
 	"strings"
@@ -20,7 +21,12 @@ type BotMatcher interface {
 	Matcher
 }
 
-var genericBotName = "Generic Bot"
+var (
+	genericBotName  = "Generic Bot"
+	exceptionsCache []string
+	knownBotsCache  = make(map[string]bots.BotMatchInfo)
+	cacheErr        error
+)
 
 // Bot is a struct that contains information about the user agent's bot
 type Bot struct {
@@ -30,27 +36,57 @@ type Bot struct {
 	registered bool       // indicates if the bot matcher has registered
 }
 
+func init() {
+	loadBots()
+	loadExceptions()
+}
+
 // NewBot returns a new Bot
 // It will return an error if the bot exceptions file cannot be read
 // It will return an error if the bot exceptions file cannot be unmarshalled
 func NewBot(userAgent string) (*Bot, error) {
-	be, err := fs.ReadFile("assets/internal/bot_exceptions.yml")
-	if err != nil {
-		return nil, err
-	}
-
-	e := make([]string, 0)
-	if err := yaml.Unmarshal(be, &e); err != nil {
-		return nil, err
+	if cacheErr != nil {
+		return nil, cacheErr
 	}
 
 	bot := &Bot{
 		userAgent:  userAgent,
-		exceptions: e,
+		exceptions: exceptionsCache,
 	}
 	bot.register()
 
 	return bot, nil
+}
+
+// loadExceptions loads the exceptions from the embedded file only once
+func loadExceptions() {
+	be, err := fs.ReadFile("assets/internal/bot_exceptions.yml")
+	if err != nil {
+		cacheErr = fmt.Errorf("failed to read bot exceptions file: %w", err)
+		return
+	}
+
+	var e []string
+	if err := yaml.Unmarshal(be, &e); err != nil {
+		cacheErr = fmt.Errorf("failed to unmarshal bot exceptions: %w", err)
+		return
+	}
+
+	exceptionsCache = e
+}
+
+func loadBots() {
+	kb, err := fs.ReadFile("assets/internal/known_bots.yml")
+	if err != nil {
+		log.Panicln(err)
+	}
+
+	b := make(map[string]string)
+	if err := yaml.Unmarshal(kb, &b); err != nil {
+		log.Panicln(err)
+	}
+
+	knownBotsCache = bots.CompileKnownBots(b)
 }
 
 // register registers the bot matcher
@@ -78,18 +114,8 @@ func (b *Bot) register() {
 // getKnownBots returns the known bots
 // It will panic if the known bots file cannot be read
 // TODO: return an error
-func getKnownBots() map[string]string {
-	kb, err := fs.ReadFile("assets/internal/known_bots.yml")
-	if err != nil {
-		log.Panicln(err)
-	}
-
-	b := make(map[string]string)
-	if err := yaml.Unmarshal(kb, &b); err != nil {
-		log.Panicln(err)
-	}
-
-	return b
+func getKnownBots() map[string]bots.BotMatchInfo {
+	return knownBotsCache
 }
 
 // getMatcher returns the bot matcher detected from the user agent string
