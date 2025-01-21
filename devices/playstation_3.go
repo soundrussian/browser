@@ -1,12 +1,15 @@
 package devices
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type PlayStation3 struct {
 	p Parser
 }
 
 var (
-	playStation3Name       = "PlayStation 3"
-	playStation3MatchRegex = []string{`(?i)PLAYSTATION 3`}
+	playStation3Name               = "PlayStation 3"
+	playStation3MatchRegex         = []string{`(?i)PLAYSTATION 3`}
+	playStation3MatchRegexCompiled = utils.CompileRegexps(playStation3MatchRegex)
 )
 
 func NewPlayStation3(p Parser) *PlayStation3 {
@@ -20,5 +23,5 @@ func (p *PlayStation3) Name() string {
 }
 
 func (p *PlayStation3) Match() bool {
-	return p.p.Match(playStation3MatchRegex)
+	return p.p.Match(playStation3MatchRegexCompiled)
 }

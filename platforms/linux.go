@@ -1,12 +1,15 @@
 package platforms
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type Linux struct {
 	p Parser
 }
 
 var (
-	linuxName        = "Generic Linux"
-	linuxMatchRegexp = []string{`Linux`}
+	linuxName                = "Generic Linux"
+	linuxMatchRegexp         = []string{`Linux`}
+	linuxMatchRegexpCompiled = utils.CompileRegexps(linuxMatchRegexp)
 )
 
 func NewLinux(p Parser) *Linux {
@@ -24,5 +27,5 @@ func (l *Linux) Version() string {
 }
 
 func (l *Linux) Match() bool {
-	return l.p.Match(linuxMatchRegexp)
+	return l.p.Match(linuxMatchRegexpCompiled)
 }

@@ -3,7 +3,7 @@ package browser
 import (
 	"strings"
 
-	"github.com/soundrussian/browser/matchers"
+	"github.com/soundrussian/browser/v2/matchers"
 )
 
 const (

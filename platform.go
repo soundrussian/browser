@@ -4,8 +4,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/soundrussian/browser/platforms"
-	"github.com/soundrussian/browser/utils"
+	"github.com/soundrussian/browser/v2/platforms"
+	"github.com/soundrussian/browser/v2/utils"
 )
 
 // PlatformMatcher is an interface for user agent platform matchers.
@@ -238,11 +238,12 @@ func (p *Platform) IsIOSWebview() bool {
 	return p.IsIOSApp()
 }
 
+var androidRgCompiled = regexp.MustCompile(`\bwv\b`)
+
 // IsAndroidApp returns true if the platform is Android app and the user agent string contains wv.
 // https://developer.chrome.com/docs/multidevice/user-agent/#webview_user_agent
 func (p *Platform) IsAndroidApp() bool {
-	rg := regexp.MustCompile(`\bwv\b`)
-	if p.IsAndroid() && rg.MatchString(p.userAgent) {
+	if p.IsAndroid() && androidRgCompiled.MatchString(p.userAgent) {
 		return true
 	}
 	return false
@@ -262,12 +263,13 @@ func (p *Platform) IsWindows() bool {
 	return false
 }
 
+var xpVersionRgCompiled = regexp.MustCompile(`5\.[12]`)
+
 // IsWindowsXP returns true if the platform is Windows XP.
 func (p *Platform) IsWindowsXP() bool {
 	v := p.getMatcher().Version()
-	rg := regexp.MustCompile(`5\.[12]`)
 
-	if p.IsWindows() && rg.MatchString(v) {
+	if p.IsWindows() && xpVersionRgCompiled.MatchString(v) {
 		return true
 	}
 
@@ -292,11 +294,12 @@ func (p *Platform) IsWindows7() bool {
 	return false
 }
 
+var window8VersionRgCompiled = regexp.MustCompile(`6\.[2-3]`)
+
 // IsWindows8 returns true if the platform is Windows 8.
 func (p *Platform) IsWindows8() bool {
 	ver := p.getMatcher().Version()
-	rg := regexp.MustCompile(`6\.[2-3]`)
-	if p.IsWindows() && rg.MatchString(ver) {
+	if p.IsWindows() && window8VersionRgCompiled.MatchString(ver) {
 		return true
 	}
 	return false
@@ -328,18 +331,20 @@ func (p *Platform) IsWindowsRT() bool {
 	return false
 }
 
+var windowsx64rgCompiled = regexp.MustCompile(`(Win64|x64|Windows NT 5\.2)`)
+
 // IsWindowsX64 returns true if the platform is Windows x64.
 func (p *Platform) IsWindowsX64() bool {
-	rg := regexp.MustCompile(`(Win64|x64|Windows NT 5\.2)`)
-	if p.IsWindows() && rg.MatchString(p.userAgent) {
+	if p.IsWindows() && windowsx64rgCompiled.MatchString(p.userAgent) {
 		return true
 	}
 	return false
 }
 
+var windowsWOW64rgCompiled = regexp.MustCompile(`(?i)WOW64`)
+
 func (p *Platform) IsWindowsWOW64() bool {
-	rg := regexp.MustCompile(`(?i)WOW64`)
-	if p.IsWindows() && rg.MatchString(p.userAgent) {
+	if p.IsWindows() && windowsWOW64rgCompiled.MatchString(p.userAgent) {
 		return true
 	}
 	return false

@@ -1,12 +1,15 @@
 package devices
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type Iphone struct {
 	p Parser
 }
 
 var (
-	iPhoneName       = "iPhone"
-	iPhoneMatchRegex = []string{`iPhone`}
+	iPhoneName               = "iPhone"
+	iPhoneMatchRegex         = []string{`iPhone`}
+	iPhoneMatchRegexCompiled = utils.CompileRegexps(iPhoneMatchRegex)
 )
 
 func NewIphone(p Parser) *Iphone {
@@ -20,5 +23,5 @@ func (i *Iphone) Name() string {
 }
 
 func (i *Iphone) Match() bool {
-	return i.p.Match(iPhoneMatchRegex)
+	return i.p.Match(iPhoneMatchRegexCompiled)
 }

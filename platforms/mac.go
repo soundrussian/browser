@@ -3,7 +3,7 @@ package platforms
 import (
 	"strings"
 
-	"github.com/soundrussian/browser/utils"
+	"github.com/soundrussian/browser/v2/utils"
 )
 
 type Mac struct {
@@ -11,10 +11,12 @@ type Mac struct {
 }
 
 var (
-	macName          = "macOS"
-	macXName         = "Mac OS X"
-	macVersionRegexp = []string{`(?:Mac|MAC) OS X\s*([0-9_.]+)?`}
-	macMatchRegexp   = []string{`M(ac|AC)|macOS`}
+	macName                  = "macOS"
+	macXName                 = "Mac OS X"
+	macVersionRegexp         = []string{`(?:Mac|MAC) OS X\s*([0-9_.]+)?`}
+	macMatchRegexp           = []string{`M(ac|AC)|macOS`}
+	macVersionRegexpCompiled = utils.CompileRegexps(macVersionRegexp)
+	macMatchRegexpCompiled   = utils.CompileRegexps(macMatchRegexp)
 )
 
 func NewMac(p Parser) *Mac {
@@ -31,10 +33,10 @@ func (m *Mac) Name() string {
 }
 
 func (m *Mac) Version() string {
-	version := m.p.Version(macVersionRegexp, 1, "0")
+	version := m.p.Version(macVersionRegexpCompiled, 1, "0")
 	return strings.Replace(version, "_", ".", -1)
 }
 
 func (m *Mac) Match() bool {
-	return m.p.Match(macMatchRegexp)
+	return m.p.Match(macMatchRegexpCompiled)
 }

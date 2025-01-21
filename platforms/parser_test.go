@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	. "github.com/smartystreets/goconvey/convey"
+	"github.com/soundrussian/browser/v2/utils"
 )
 
 func TestParserMatching(t *testing.T) {
@@ -12,14 +13,14 @@ func TestParserMatching(t *testing.T) {
 		Convey("When platform is matched", func() {
 			Convey("It should return true", func() {
 				parser := NewUAParser(userAgent)
-				So(parser.Match([]string{"Android"}), ShouldBeTrue)
+				So(parser.Match(utils.CompileRegexps([]string{"Android"})), ShouldBeTrue)
 			})
 		})
 
 		Convey("When platform is not matched", func() {
 			Convey("It should return false", func() {
 				parser := NewUAParser(userAgent)
-				So(parser.Match([]string{"Windows"}), ShouldBeFalse)
+				So(parser.Match(utils.CompileRegexps([]string{"Windows"})), ShouldBeFalse)
 			})
 		})
 	})
@@ -32,7 +33,7 @@ func TestParserVersion(t *testing.T) {
 			Convey("When order is 1", func() {
 				Convey("It should return version", func() {
 					parser := NewUAParser(androidUserAgent)
-					So(parser.Version([]string{`Android ([\d.]+)`}, 1, ""), ShouldEqual, "4.4.2")
+					So(parser.Version(utils.CompileRegexps([]string{`Android ([\d.]+)`}), 1, ""), ShouldEqual, "4.4.2")
 				})
 			})
 
@@ -40,7 +41,7 @@ func TestParserVersion(t *testing.T) {
 				snapUserAgent := "Mozilla/5.0 (iPhone; CPU iPhone OS 16_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Mobile/15E148 Snapchat/12.33.0.36 (like Safari/8615.1.26.100.1, panda)"
 				Convey("It should return version", func() {
 					parser := NewUAParser(snapUserAgent)
-					So(parser.Version([]string{`Snapchat( ?|/)([\d.]+)`}, 2, ""), ShouldEqual, "12.33.0.36")
+					So(parser.Version(utils.CompileRegexps([]string{`Snapchat( ?|/)([\d.]+)`}), 2, ""), ShouldEqual, "12.33.0.36")
 				})
 			})
 		})
@@ -48,7 +49,7 @@ func TestParserVersion(t *testing.T) {
 		Convey("When version is not matched", func() {
 			Convey("It should return default version", func() {
 				parser := NewUAParser(androidUserAgent)
-				So(parser.Version([]string{`Android ([\d.]+)`}, 2, "0"), ShouldEqual, "0")
+				So(parser.Version(utils.CompileRegexps([]string{`Android ([\d.]+)`}), 2, "0"), ShouldEqual, "0")
 			})
 		})
 	})

@@ -1,12 +1,15 @@
 package devices
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type Kindle struct {
 	p Parser
 }
 
 var (
-	kindleName       = "Kindle"
-	kindleMatchRegex = []string{`Kindle`}
+	kindleName               = "Kindle"
+	kindleMatchRegex         = []string{`Kindle`}
+	kindleMatchRegexCompiled = utils.CompileRegexps(kindleMatchRegex)
 )
 
 func NewKindle(p Parser) *Kindle {
@@ -20,5 +23,5 @@ func (k *Kindle) Name() string {
 }
 
 func (k *Kindle) Match() bool {
-	return k.p.Match(kindleMatchRegex)
+	return k.p.Match(kindleMatchRegexCompiled)
 }

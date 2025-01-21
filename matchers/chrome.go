@@ -1,13 +1,17 @@
 package matchers
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type Chrome struct {
 	p Parser
 }
 
 var (
-	chromeName          = "Chrome"
-	chromeVersionRegexp = []string{`Chrome/([\d.]+)`, `CriOS/([\d.]+)`, `Safari/([\d.]+)`, `AppleWebKit/([\d.]+)`}
-	chromeMatchRegex    = []string{`Chrome|CriOS`}
+	chromeName                  = "Chrome"
+	chromeVersionRegexp         = []string{`Chrome/([\d.]+)`, `CriOS/([\d.]+)`, `Safari/([\d.]+)`, `AppleWebKit/([\d.]+)`}
+	chromeMatchRegex            = []string{`Chrome|CriOS`}
+	chromeVersionRegexpCompiled = utils.CompileRegexps(chromeVersionRegexp)
+	chromeMatchRegexCompiled    = utils.CompileRegexps(chromeMatchRegex)
 )
 
 func NewChrome(p Parser) *Chrome {
@@ -21,9 +25,9 @@ func (c *Chrome) Name() string {
 }
 
 func (c *Chrome) Version() string {
-	return c.p.Version(chromeVersionRegexp, 1)
+	return c.p.Version(chromeVersionRegexpCompiled, 1)
 }
 
 func (c *Chrome) Match() bool {
-	return c.p.Match(chromeMatchRegex)
+	return c.p.Match(chromeMatchRegexCompiled)
 }

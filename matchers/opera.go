@@ -1,5 +1,7 @@
 package matchers
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type Opera struct {
 	p Parser
 }
@@ -7,8 +9,10 @@ type Opera struct {
 var (
 	operaName = "Opera"
 	// order matters for version detection
-	operaVersionRegexp = []string{`Opera Mini/([\d.]+)`, `OP(?:R|iOS|T)/([\d.]+)`, `Opera/([\d.]+)`, `Version/([\d.]+)`}
-	operaMatchRegexp   = []string{`(Opera|OP(R|iOS|T)/)`}
+	operaVersionRegexp         = []string{`Opera Mini/([\d.]+)`, `OP(?:R|iOS|T)/([\d.]+)`, `Opera/([\d.]+)`, `Version/([\d.]+)`}
+	operaMatchRegexp           = []string{`(Opera|OP(R|iOS|T)/)`}
+	operaVersionRegexpCompiled = utils.CompileRegexps(operaVersionRegexp)
+	operaMatchRegexpCompiled   = utils.CompileRegexps(operaMatchRegexp)
 )
 
 func NewOpera(p Parser) *Opera {
@@ -22,9 +26,9 @@ func (o *Opera) Name() string {
 }
 
 func (o *Opera) Version() string {
-	return o.p.Version(operaVersionRegexp, 1)
+	return o.p.Version(operaVersionRegexpCompiled, 1)
 }
 
 func (o *Opera) Match() bool {
-	return o.p.Match(operaMatchRegexp)
+	return o.p.Match(operaMatchRegexpCompiled)
 }

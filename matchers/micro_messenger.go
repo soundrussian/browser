@@ -1,13 +1,17 @@
 package matchers
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type MicroMessenger struct {
 	p Parser
 }
 
 var (
-	microMessengerName          = "MicroMessenger"
-	microMessengerVersionRegexp = []string{`(?i)(?:MicroMessenger)/([\d.]+)`}
-	microMessengerMatchRegexp   = []string{`MicroMessenger`}
+	microMessengerName                  = "MicroMessenger"
+	microMessengerVersionRegexp         = []string{`(?i)(?:MicroMessenger)/([\d.]+)`}
+	microMessengerMatchRegexp           = []string{`MicroMessenger`}
+	microMessengerVersionRegexpCompiled = utils.CompileRegexps(microMessengerVersionRegexp)
+	microMessengerMatchRegexpCompiled   = utils.CompileRegexps(microMessengerMatchRegexp)
 )
 
 func NewMicroMessenger(p Parser) *MicroMessenger {
@@ -21,9 +25,9 @@ func (m *MicroMessenger) Name() string {
 }
 
 func (m *MicroMessenger) Version() string {
-	return m.p.Version(microMessengerVersionRegexp, 1)
+	return m.p.Version(microMessengerVersionRegexpCompiled, 1)
 }
 
 func (m *MicroMessenger) Match() bool {
-	return m.p.Match(microMessengerMatchRegexp)
+	return m.p.Match(microMessengerMatchRegexpCompiled)
 }

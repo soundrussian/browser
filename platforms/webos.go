@@ -1,13 +1,17 @@
 package platforms
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type WebOS struct {
 	p Parser
 }
 
 var (
-	webOSName          = "WebOS"
-	webOSVersionRegexp = []string{`OS\/?([\d.]+)`}
-	webOSRegex         = []string{`(?i)WebOS|hpwOS`}
+	webOSName                  = "WebOS"
+	webOSVersionRegexp         = []string{`OS\/?([\d.]+)`}
+	webOSRegex                 = []string{`(?i)WebOS|hpwOS`}
+	webOSVersionRegexpCompiled = utils.CompileRegexps(webOSVersionRegexp)
+	webOSRegexCompiled         = utils.CompileRegexps(webOSRegex)
 )
 
 func NewWebOS(p Parser) *WebOS {
@@ -22,9 +26,9 @@ func (k *WebOS) Name() string {
 
 // Version returns version for WebOS
 func (k *WebOS) Version() string {
-	return k.p.Version(webOSVersionRegexp, 1, "")
+	return k.p.Version(webOSVersionRegexpCompiled, 1, "")
 }
 
 func (k *WebOS) Match() bool {
-	return k.p.Match(webOSRegex)
+	return k.p.Match(webOSRegexCompiled)
 }

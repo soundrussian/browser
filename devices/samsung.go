@@ -18,8 +18,9 @@ func NewSamsung(p Parser) *Samsung {
 }
 
 var (
-	samsungName       = "Samsung"
-	samsungMatchRegex = `(?i)(?:Linux.*?; Android.*?; (?:SAMSUNG )?(SM-[A-Z0-9]+).*?)`
+	samsungName               = "Samsung"
+	samsungMatchRegex         = `(?i)(?:Linux.*?; Android.*?; (?:SAMSUNG )?(SM-[A-Z0-9]+).*?)`
+	samsungMatchRegexCompiled = regexp.MustCompile(samsungMatchRegex)
 )
 
 func (s *Samsung) Name() string {
@@ -41,8 +42,7 @@ func (s *Samsung) registerMatches() {
 		return
 	}
 
-	re := regexp.MustCompile(samsungMatchRegex)
-	matches := re.FindStringSubmatch(s.p.String())
+	matches := samsungMatchRegexCompiled.FindStringSubmatch(s.p.String())
 	if len(matches) > 0 {
 		s.matches = matches
 	}

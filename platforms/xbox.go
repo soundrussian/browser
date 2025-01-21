@@ -1,12 +1,15 @@
 package platforms
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type Xbox struct {
 	p Parser
 }
 
 var (
-	xboxName       = "Xbox"
-	xboxMatchRegex = []string{`Xbox`}
+	xboxName               = "Xbox"
+	xboxMatchRegex         = []string{`Xbox`}
+	xboxMatchRegexCompiled = utils.CompileRegexps(xboxMatchRegex)
 )
 
 func NewXbox(p Parser) *Xbox {
@@ -25,5 +28,5 @@ func (k *Xbox) Version() string {
 }
 
 func (k *Xbox) Match() bool {
-	return k.p.Match(xboxMatchRegex)
+	return k.p.Match(xboxMatchRegexCompiled)
 }
