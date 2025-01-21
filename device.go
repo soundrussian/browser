@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/soundrussian/browser/v2/devices"
+	"github.com/soundrussian/browser/v2/utils"
 )
 
 var (
@@ -35,7 +36,7 @@ func NewDevice(userAgent string) (*Device, error) {
 	}
 
 	d := &Device{
-		userAgent: userAgent,
+		userAgent: utils.PadStringWithSpaces(userAgent, 4),
 	}
 	d.register()
 
