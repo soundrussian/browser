@@ -1,12 +1,15 @@
 package devices
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type PSVita struct {
 	p Parser
 }
 
 var (
-	psVitaName       = "PlayStation Vita"
-	psVitaMatchRegex = []string{`(?i)PlayStation Vita`}
+	psVitaName               = "PlayStation Vita"
+	psVitaMatchRegex         = []string{`(?i)PlayStation Vita`}
+	psVitaMatchRegexCompiled = utils.CompileRegexps(psVitaMatchRegex)
 )
 
 func NewPSVita(p Parser) *PSVita {
@@ -20,5 +23,5 @@ func (p *PSVita) Name() string {
 }
 
 func (p *PSVita) Match() bool {
-	return p.p.Match(psVitaMatchRegex)
+	return p.p.Match(psVitaMatchRegexCompiled)
 }

@@ -4,6 +4,11 @@ alipay:
   ios: Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13E230 ChannelId(3) Nebula PSDType(1) AlipayDefined(nt:WIFI,ws:320|504|2.0) AliApp(AP/9.9.0.000001) AlipayClient/9.9.0.000001 Language/zh-Hans ProductType/dev
   mac: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2,AlipayClient) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36
   windows: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/538.1 (KHTML like Gecko) alipay_demo1 Safari/538.1
+android-browser:
+  android: Mozilla/5.0     (Linux; U) AppleWebKit/537.36 (KHTML, like Gecko)     Version/4.0 Mobile Safari/537.36 SmartTV/7.0 (NetCast) Android
+baidu:
+  android: Mozilla/5.0 (Linux; Android 10; HLK-AL00 Build/HONORHLK-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/97.0.4692.98 Mobile Safari/537.36 T7/13.81 BDOS/1.0 (HarmonyOS 2.2.0) SP-engine/3.22.0 baiduboxapp/13.81.1.10 (Baidu; P1 10) NABar/1.0
+  ios: Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 SP-engine/3.22.0 main/1.0 baiduboxapp/13.81.1.10 (Baidu; P2 18.1.1) NABar/1.0 themeUA=Theme/default
 blackberry:
   android: Mozilla/5.0 (Linux; Android 7.1.1; BBB100-3 Build/NMF26F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Mobile Safari/537.36
   ios: Mozilla/5.0 (iPhone; CPU iPhone OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 ZONApp/iOS/1.8.1 bb105a49-62d6-4895-b831-6c1da9c92e6e
@@ -20,6 +25,10 @@ chrome:
   linux: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
   mac: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36
   windows: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36
+coc-coc:
+  android: Mozilla/5.0 (Linux; Android 9.0.99; MYNETTV-2H) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/80.0.232 Chrome/74.0.3729.232 Safari/537.36
+  mac: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/94.0.210 Chrome/88.0.4324.210 Safari/537.36
+  windows: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/56.3.162 Chrome/50.3.2661.162 Safari/537.36
 duck_duck_go:
   android: Mozilla/5.0 (Linux; Android 9) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.132 Mobile Safari/537.36 DuckDuckGo/5
   ios: DuckDuckGo/2 CFNetwork/897.15 Darwin/17.5.0
@@ -80,6 +89,8 @@ miui-browser:
   ios: Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B367 Safari/531.21.10 XiaoMi/Mi-Pad/MiuiBrowser/1.0
   linux: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.34 Safari/534.24 XiaoMi/MiuiBrowser/2.0.1
   windows: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/71.0.3578.141 Safari/534.24 XiaoMi/MiuiBrowser/12.5.2-gn
+nintendo:
+  linux: Mozilla/5.0 (Nintendo Switch; WifiWebAuthApplet) AppleWebKit/609.4 (KHTML, like Gecko) NF/6.0.2.26.0 NintendoBrowser/5.1.0.23653
 nokia:
   android: Mozilla/5.0 (Linux; Android 4.1.2; Nokia_X Build/JZO54K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.82 Mobile Safari/537.36 NokiaBrowser/1.2.0.12
   linux: Mozilla/5.0 (Series40; Nokia302/14.53; Profile/MIDP-2.1 Configuration/CLDC-1.1) Gecko/20100401 S40OviBrowser/2.3.0.0.48
@@ -132,6 +143,8 @@ samsung-browser:
   ios: Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.20 (KHTML, like Gecko) SamsungBrowser/5.4 Chrome/51.0.2704.106 Mobile Safari/537.36
   linux: Mozilla/5.0 (SMART-TV; Linux; Tizen 2.3) AppleWebkit/538.1 (KHTML, like Gecko) SamsungBrowser/1.0 TV Safari/538.1
   windows: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/5.2 Chrome/51.0.2704.106 DEX Safari/537.36
+silk-browser:
+  android: Mozilla/5.0 (Linux; Android 9; KFMUWI) AppleWebKit/537.36 (KHTML, like Gecko) Silk/130.5.9 like Chrome/130.0.6723.142 Safari/537.36
 snapchat:
   android: Mozilla/5.0 (Linux; Android 7.1.1; Coolpad 3632A Build/NMF26F; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/60.0.3112.116 Mobile Safari/537.36 Snapchat/10.18.2.0 (Coolpad 3632A; Android 7.1.1#108560743#25; gzip)
   ios: Snapchat 10.22.2.0 (iPhone10,6; iOS 11.1.2; gzip)

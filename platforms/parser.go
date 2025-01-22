@@ -3,8 +3,8 @@ package platforms
 import "regexp"
 
 type Parser interface {
-	Version([]string, int, string) string
-	Match([]string) bool
+	Version([]*regexp.Regexp, int, string) string
+	Match([]*regexp.Regexp) bool
 	String() string
 }
 
@@ -24,13 +24,12 @@ func (b UAParser) String() string {
 }
 
 // Version returns the version of the platform.
-// The pattern is a list of regular expressions.
+// The pattern is a list of compiled regular expressions.
 // The version is extracted from the user agent string using the given patterns.
 // The order parameter specifies which match to return.
-func (b UAParser) Version(patterns []string, order int, defaultVersion string) string {
+func (b UAParser) Version(patterns []*regexp.Regexp, order int, defaultVersion string) string {
 	for _, pattern := range patterns {
-		re := regexp.MustCompile(pattern)
-		matches := re.FindStringSubmatch(b.userAgent)
+		matches := pattern.FindStringSubmatch(b.userAgent)
 		if len(matches) > order {
 			return matches[order]
 		}
@@ -40,10 +39,9 @@ func (b UAParser) Version(patterns []string, order int, defaultVersion string) s
 
 // Match returns true if the user agent matches the pattern.
 // The pattern is a list of regular expressions.
-func (b UAParser) Match(patterns []string) bool {
+func (b UAParser) Match(patterns []*regexp.Regexp) bool {
 	for _, pattern := range patterns {
-		re := regexp.MustCompile(pattern)
-		if re.MatchString(b.userAgent) {
+		if pattern.MatchString(b.userAgent) {
 			return true
 		}
 	}

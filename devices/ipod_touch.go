@@ -1,12 +1,15 @@
 package devices
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type IpodTouch struct {
 	p Parser
 }
 
 var (
-	ipodTouchName       = "iPod Touch"
-	ipodTouchMatchRegex = []string{`(?i)iPod`}
+	ipodTouchName               = "iPod Touch"
+	ipodTouchMatchRegex         = []string{`(?i)iPod`}
+	ipodTouchMatchRegexCompiled = utils.CompileRegexps(ipodTouchMatchRegex)
 )
 
 func NewIpodTouch(p Parser) *IpodTouch {
@@ -20,5 +23,5 @@ func (i *IpodTouch) Name() string {
 }
 
 func (i *IpodTouch) Match() bool {
-	return i.p.Match(ipodTouchMatchRegex)
+	return i.p.Match(ipodTouchMatchRegexCompiled)
 }

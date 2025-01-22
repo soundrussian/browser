@@ -317,6 +317,46 @@ func TestBrowserIsAlipay(t *testing.T) {
 	})
 }
 
+func TestBrowserIsAndroidBrowser(t *testing.T) {
+	Convey("Subject: #IsAndroidBrowser", t, func() {
+		Convey("When the browser is Android Browser", func() {
+			Convey("It should return true", func() {
+				ua := testUserAgents["android-browser"]
+				b, _ := NewBrowser(ua.Android)
+				So(b.IsAndroidBrowser(), ShouldBeTrue)
+			})
+
+			Convey("When the browser is not Android Browser", func() {
+				Convey("It should return false", func() {
+					ua := testUserAgents["chrome"]
+					b, _ := NewBrowser(ua.Android)
+					So(b.IsAndroidBrowser(), ShouldBeFalse)
+				})
+			})
+		})
+	})
+}
+
+func TestBrowserIsBaidu(t *testing.T) {
+	Convey("Subject: #IsBaidu", t, func() {
+		Convey("When the browser is Baidu", func() {
+			Convey("It should return true", func() {
+				ua := testUserAgents["baidu"]
+				b, _ := NewBrowser(ua.Android)
+				So(b.IsBaidu(), ShouldBeTrue)
+			})
+		})
+
+		Convey("When the browser is not Baidu", func() {
+			Convey("It should return false", func() {
+				ua := testUserAgents["chrome"]
+				b, _ := NewBrowser(ua.Android)
+				So(b.IsBaidu(), ShouldBeFalse)
+			})
+		})
+	})
+}
+
 func TestBrowserIsNokia(t *testing.T) {
 	Convey("Subject: #IsNokia", t, func() {
 		Convey("When the browser is Nokia", func() {
@@ -332,6 +372,26 @@ func TestBrowserIsNokia(t *testing.T) {
 				ua := testUserAgents["chrome"]
 				b, _ := NewBrowser(ua.Android)
 				So(b.IsNokia(), ShouldBeFalse)
+			})
+		})
+	})
+}
+
+func TestBrowserIsNintendo(t *testing.T) {
+	Convey("Subject: #IsNintendo", t, func() {
+		Convey("When the browser is Nintendo", func() {
+			Convey("It should return true", func() {
+				ua := testUserAgents["nintendo"]
+				b, _ := NewBrowser(ua.Linux)
+				So(b.IsNintendo(), ShouldBeTrue)
+			})
+		})
+
+		Convey("When the browser is not Nintendo", func() {
+			Convey("It should return false", func() {
+				ua := testUserAgents["chrome"]
+				b, _ := NewBrowser(ua.Linux)
+				So(b.IsNintendo(), ShouldBeFalse)
 			})
 		})
 	})
@@ -784,6 +844,26 @@ func TestBrowserIsSamsungBrowser(t *testing.T) {
 	})
 }
 
+func TestBrowserIsSilkBrowser(t *testing.T) {
+	Convey("Subject: #IsSilkBrowser", t, func() {
+		Convey("When the browser is Silk Browser", func() {
+			Convey("It should return true", func() {
+				ua := testUserAgents["silk-browser"]
+				b, _ := NewBrowser(ua.Android)
+				So(b.IsSilkBrowser(), ShouldBeTrue)
+			})
+		})
+
+		Convey("When the browser is not Silk Browser", func() {
+			Convey("It should return false", func() {
+				ua := testUserAgents["chrome"]
+				b, _ := NewBrowser(ua.Android)
+				So(b.IsSilkBrowser(), ShouldBeFalse)
+			})
+		})
+	})
+}
+
 func TestBrowserIsSougouBrowser(t *testing.T) {
 	Convey("Subject: #IsSougouBrowser", t, func() {
 		Convey("When the browser is Sougou Browser", func() {
@@ -1022,6 +1102,26 @@ func TestBrowserIsVivaldi(t *testing.T) {
 				ua := testUserAgents["chrome"]
 				b, _ := NewBrowser(ua.Windows)
 				So(b.IsVivaldi(), ShouldBeFalse)
+			})
+		})
+	})
+}
+
+func TestBrowserIsCocCoc(t *testing.T) {
+	Convey("Subject: #IsCocCoc", t, func() {
+		Convey("When the browser is Coc Coc", func() {
+			Convey("It should return true", func() {
+				ua := testUserAgents["coc-coc"]
+				b, _ := NewBrowser(ua.Android)
+				So(b.IsCocCoc(), ShouldBeTrue)
+			})
+		})
+
+		Convey("When the browser is not CocCoc", func() {
+			Convey("It should return false", func() {
+				ua := testUserAgents["chrome"]
+				b, _ := NewBrowser(ua.Android)
+				So(b.IsCocCoc(), ShouldBeFalse)
 			})
 		})
 	})

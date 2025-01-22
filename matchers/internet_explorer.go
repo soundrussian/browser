@@ -3,6 +3,8 @@ package matchers
 import (
 	"regexp"
 	"strings"
+
+	"github.com/soundrussian/browser/v2/utils"
 )
 
 type InternetExplorer struct {
@@ -10,8 +12,11 @@ type InternetExplorer struct {
 }
 
 var (
-	ieName       = "Internet Explorer"
-	ieMatchRegex = []string{`Trident/.*?; rv:(.*?)`}
+	ieName                       = "Internet Explorer"
+	ieMatchRegex                 = []string{`Trident/.*?; rv:(.*?)`}
+	ieMatchRegexCompiled         = utils.CompileRegexps(ieMatchRegex)
+	msIEFullVersionRegexCompiled = regexp.MustCompile(`MSIE ([\d.]+)|Trident/.*?; rv:([\d.]+)`)
+	tridentVersionRegexCompiled  = regexp.MustCompile(`Trident/([0-9.]+)`)
 	// https://en.wikipedia.org/wiki/Trident_(layout_engine)
 	// A map of trident versions and their respective IE versions
 	tridentMapping = map[string]string{
@@ -48,8 +53,7 @@ func (i *InternetExplorer) Version() string {
 
 // tridentVersion returns the version of Trident
 func (i *InternetExplorer) tridentVersion() string {
-	re := regexp.MustCompile(`Trident/([0-9.]+)`)
-	matches := re.FindStringSubmatch(i.p.String())
+	matches := tridentVersionRegexCompiled.FindStringSubmatch(i.p.String())
 	if len(matches) > 1 {
 		return matches[1]
 	}
@@ -63,9 +67,7 @@ func (i *InternetExplorer) msieVersion() string {
 
 // msieFullVersion returns the full version of MSIE
 func (i *InternetExplorer) msieFullVersion() string {
-	re := regexp.MustCompile(`MSIE ([\d.]+)|Trident/.*?; rv:([\d.]+)`)
-
-	matches := re.FindStringSubmatch(i.p.String())
+	matches := msIEFullVersionRegexCompiled.FindStringSubmatch(i.p.String())
 	if len(matches) > 2 {
 		if matches[1] != "" {
 			return matches[1]
@@ -81,6 +83,6 @@ func (i *InternetExplorer) msieFullVersion() string {
 // Internet Explorer matchers
 // It also checks if the user agent contains MSIE and does not contain Opera
 func (i *InternetExplorer) Match() bool {
-	return i.p.Match(ieMatchRegex) || (strings.Contains(i.p.String(), "MSIE") &&
+	return i.p.Match(ieMatchRegexCompiled) || (strings.Contains(i.p.String(), "MSIE") &&
 		!strings.Contains(i.p.String(), "Opera"))
 }

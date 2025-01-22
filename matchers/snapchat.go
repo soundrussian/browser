@@ -1,13 +1,17 @@
 package matchers
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type Snapchat struct {
 	p Parser
 }
 
 var (
-	snapchatName          = "Snapchat"
-	snapchatVersionRegexp = []string{`Snapchat(?: |/)?([\d.]+)`}
-	snapchatMatchRegexp   = []string{`Snapchat`}
+	snapchatName                  = "Snapchat"
+	snapchatVersionRegexp         = []string{`Snapchat(?: |/)?([\d.]+)`}
+	snapchatMatchRegexp           = []string{`Snapchat`}
+	snapchatVersionRegexpCompiled = utils.CompileRegexps(snapchatVersionRegexp)
+	snapchatMatchRegexpCompiled   = utils.CompileRegexps(snapchatMatchRegexp)
 )
 
 func NewSnapchat(p Parser) *Snapchat {
@@ -21,9 +25,9 @@ func (s *Snapchat) Name() string {
 }
 
 func (s *Snapchat) Version() string {
-	return s.p.Version(snapchatVersionRegexp, 1)
+	return s.p.Version(snapchatVersionRegexpCompiled, 1)
 }
 
 func (s *Snapchat) Match() bool {
-	return s.p.Match(snapchatMatchRegexp)
+	return s.p.Match(snapchatMatchRegexpCompiled)
 }

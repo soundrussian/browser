@@ -3,7 +3,7 @@ package browser
 import (
 	"strings"
 
-	"github.com/dineshgowda24/browser/matchers"
+	"github.com/soundrussian/browser/v2/matchers"
 )
 
 const (
@@ -70,7 +70,9 @@ func (b *Browser) register() {
 	matchers := []BrowserMatcher{
 		matchers.NewAlipay(parser),
 		matchers.NewNokia(parser),
+		matchers.NewNintendo(parser),
 		matchers.NewUCBrowser(parser),
+		matchers.NewBaidu(parser),
 		matchers.NewBlackBerry(parser),
 		matchers.NewBrave(parser),
 		matchers.NewOpera(parser),
@@ -92,6 +94,8 @@ func (b *Browser) register() {
 		matchers.NewEdge(parser),
 		matchers.NewInternetExplorer(parser),
 		matchers.NewSamsungBrowser(parser),
+		matchers.NewSilkBrowser(parser),
+		matchers.NewCocCoc(parser),
 		matchers.NewSogouBrowser(parser),
 		matchers.NewVivaldi(parser),
 		matchers.NewVivoBrowser(parser),
@@ -99,6 +103,7 @@ func (b *Browser) register() {
 		matchers.NewYaaniBrowser(parser),
 		matchers.NewYandex(parser),
 		matchers.NewFirefox(parser),
+		matchers.NewAndroidBrowser(parser),
 		matchers.NewChrome(parser), // chrome should be before safari
 		matchers.NewSafari(parser), // chrome and safari must be at the end
 		matchers.NewUnknown(parser),
@@ -164,11 +169,44 @@ func (b *Browser) Bot() *Bot {
 	return b.bot
 }
 
+// IsAndroidBrowser returns true if the browser is Android Browser
+//
+// Android WebView on Android >= 4.4 is purposefully being identified as Chrome
+//
+// https://developer.chrome.com/multidevice/webview/overview
+func (b *Browser) IsAndroidBrowser() bool {
+	if _, ok := b.getMatcher().(*matchers.AndroidBrowser); ok {
+		return true
+	}
+
+	return false
+}
+
 // IsAliPay returns true if the browser is AliPay.
 //
 // https://www.alipay.com/
 func (b *Browser) IsAlipay() bool {
 	if _, ok := b.getMatcher().(*matchers.Alipay); ok {
+		return true
+	}
+
+	return false
+}
+
+// IsBaidu returns true if the browser is Baidu.
+//
+// http://liulanqi.baidu.com/
+func (b *Browser) IsBaidu() bool {
+	if _, ok := b.getMatcher().(*matchers.Baidu); ok {
+		return true
+	}
+
+	return false
+}
+
+// IsNintendo returns true if the browser is Nintendo.
+func (b *Browser) IsNintendo() bool {
+	if _, ok := b.getMatcher().(*matchers.Nintendo); ok {
 		return true
 	}
 
@@ -429,6 +467,28 @@ func (b *Browser) IsInternetExplorer() bool {
 // IsSamsungBrowser returns true if the browser is SamsungBrowser.
 func (b *Browser) IsSamsungBrowser() bool {
 	if _, ok := b.getMatcher().(*matchers.SamsungBrowser); ok {
+		return true
+	}
+
+	return false
+}
+
+// IsSilkBrowser returns true if the browser is Amazon Silk browser.
+//
+// https://docs.aws.amazon.com/silk/
+func (b *Browser) IsSilkBrowser() bool {
+	if _, ok := b.getMatcher().(*matchers.SilkBrowser); ok {
+		return true
+	}
+
+	return false
+}
+
+// IsCocCoc returns true if the browser is Coc Coc.
+//
+// https://coccoc.com/en/
+func (b *Browser) IsCocCoc() bool {
+	if _, ok := b.getMatcher().(*matchers.CocCoc); ok {
 		return true
 	}
 

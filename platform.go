@@ -4,8 +4,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/dineshgowda24/browser/platforms"
-	"github.com/dineshgowda24/browser/utils"
+	"github.com/soundrussian/browser/v2/platforms"
+	"github.com/soundrussian/browser/v2/utils"
 )
 
 // PlatformMatcher is an interface for user agent platform matchers.
@@ -48,15 +48,21 @@ func (p *Platform) register() {
 		platforms.NewAdobeAir(parser),
 		platforms.NewBlackBerry(parser),
 		platforms.NewKaiOS(parser),
+		platforms.NewWindowsPhone(parser), // Should come before iOS because of window-phone-2 example
 		platforms.NewIOS(parser),
+		platforms.NewMac(parser),
 		platforms.NewWatchOS(parser),
 		platforms.NewWindowsMobile(parser),
-		platforms.NewWindowsPhone(parser),
+		platforms.NewXbox(parser), // Should come before Windows
 		platforms.NewWindows(parser),
+		platforms.NewKindle(parser), // Should come before Android
+		platforms.NewWebOS(parser),  // Should come before Android
 		platforms.NewAndroid(parser),
 		platforms.NewLinux(parser),
 		platforms.NewFirefoxOS(parser),
 		platforms.NewChromeOS(parser),
+		platforms.NewNintendo(parser),
+		platforms.NewPlaystation(parser),
 		platforms.NewUnknown(parser),
 	}
 
@@ -156,6 +162,15 @@ func (p *Platform) IsKaiOS() bool {
 	return false
 }
 
+// IsKindle returns true if the user agent string matches Kindle.
+func (p *Platform) IsKindle() bool {
+	if _, ok := p.getMatcher().(*platforms.Kindle); ok {
+		return true
+	}
+
+	return false
+}
+
 // IsLinux returns true if the platform is Linux.
 func (p *Platform) IsLinux() bool {
 	if _, ok := p.getMatcher().(*platforms.Linux); ok {
@@ -168,6 +183,24 @@ func (p *Platform) IsLinux() bool {
 // IsBlackBerry returns true if platform is BlackBerry.
 func (p *Platform) IsBlackBerry() bool {
 	if _, ok := p.getMatcher().(*platforms.BlackBerry); ok {
+		return true
+	}
+
+	return false
+}
+
+// IsLinux returns true if the platform is Nintendo.
+func (p *Platform) IsNintendo() bool {
+	if _, ok := p.getMatcher().(*platforms.Nintendo); ok {
+		return true
+	}
+
+	return false
+}
+
+// IsPlaystation returns true if platform is PlayStation
+func (p *Platform) IsPlaystation() bool {
+	if _, ok := p.getMatcher().(*platforms.Playstation); ok {
 		return true
 	}
 
@@ -205,11 +238,12 @@ func (p *Platform) IsIOSWebview() bool {
 	return p.IsIOSApp()
 }
 
+var androidRgCompiled = regexp.MustCompile(`\bwv\b`)
+
 // IsAndroidApp returns true if the platform is Android app and the user agent string contains wv.
 // https://developer.chrome.com/docs/multidevice/user-agent/#webview_user_agent
 func (p *Platform) IsAndroidApp() bool {
-	rg := regexp.MustCompile(`\bwv\b`)
-	if p.IsAndroid() && rg.MatchString(p.userAgent) {
+	if p.IsAndroid() && androidRgCompiled.MatchString(p.userAgent) {
 		return true
 	}
 	return false
@@ -229,12 +263,13 @@ func (p *Platform) IsWindows() bool {
 	return false
 }
 
+var xpVersionRgCompiled = regexp.MustCompile(`5\.[12]`)
+
 // IsWindowsXP returns true if the platform is Windows XP.
 func (p *Platform) IsWindowsXP() bool {
 	v := p.getMatcher().Version()
-	rg := regexp.MustCompile(`5\.[12]`)
 
-	if p.IsWindows() && rg.MatchString(v) {
+	if p.IsWindows() && xpVersionRgCompiled.MatchString(v) {
 		return true
 	}
 
@@ -259,11 +294,12 @@ func (p *Platform) IsWindows7() bool {
 	return false
 }
 
+var window8VersionRgCompiled = regexp.MustCompile(`6\.[2-3]`)
+
 // IsWindows8 returns true if the platform is Windows 8.
 func (p *Platform) IsWindows8() bool {
 	ver := p.getMatcher().Version()
-	rg := regexp.MustCompile(`6\.[2-3]`)
-	if p.IsWindows() && rg.MatchString(ver) {
+	if p.IsWindows() && window8VersionRgCompiled.MatchString(ver) {
 		return true
 	}
 	return false
@@ -295,18 +331,20 @@ func (p *Platform) IsWindowsRT() bool {
 	return false
 }
 
+var windowsx64rgCompiled = regexp.MustCompile(`(Win64|x64|Windows NT 5\.2)`)
+
 // IsWindowsX64 returns true if the platform is Windows x64.
 func (p *Platform) IsWindowsX64() bool {
-	rg := regexp.MustCompile(`(Win64|x64|Windows NT 5\.2)`)
-	if p.IsWindows() && rg.MatchString(p.userAgent) {
+	if p.IsWindows() && windowsx64rgCompiled.MatchString(p.userAgent) {
 		return true
 	}
 	return false
 }
 
+var windowsWOW64rgCompiled = regexp.MustCompile(`(?i)WOW64`)
+
 func (p *Platform) IsWindowsWOW64() bool {
-	rg := regexp.MustCompile(`(?i)WOW64`)
-	if p.IsWindows() && rg.MatchString(p.userAgent) {
+	if p.IsWindows() && windowsWOW64rgCompiled.MatchString(p.userAgent) {
 		return true
 	}
 	return false
@@ -321,5 +359,32 @@ func (p *Platform) IsWindowsTouchScreenDesktop() bool {
 	if p.IsWindows() && strings.Contains(p.userAgent, "Touch") {
 		return true
 	}
+	return false
+}
+
+// IsXbox returns true if the platform is Xbox.
+func (p *Platform) IsXbox() bool {
+	if _, ok := p.getMatcher().(*platforms.Xbox); ok {
+		return true
+	}
+
+	return false
+}
+
+// IsXbox returns true if the platform is WebOS.
+func (p *Platform) IsWebOS() bool {
+	if _, ok := p.getMatcher().(*platforms.WebOS); ok {
+		return true
+	}
+
+	return false
+}
+
+// IsMac returns true if the platform is MacOS
+func (p *Platform) IsMac() bool {
+	if _, ok := p.getMatcher().(*platforms.Mac); ok {
+		return true
+	}
+
 	return false
 }

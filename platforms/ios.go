@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"regexp"
 	"strings"
+
+	"github.com/soundrussian/browser/v2/utils"
 )
 
 type IOS struct {
@@ -11,9 +13,11 @@ type IOS struct {
 }
 
 var (
-	iOSName          = "iOS"
-	iOSVersionRegexp = `OS (\d+)_(\d+)_?(\d+)?`
-	iOSMatchRegexp   = []string{`(iPhone|iPad|iPod)`}
+	iOSName                  = "iOS"
+	iOSVersionRegexp         = `OS (\d+)_(\d+)_?(\d+)?`
+	iOSMatchRegexp           = []string{`(iPhone|iPad|iPod)`}
+	iOSVersionRegexpCompiled = regexp.MustCompile(iOSVersionRegexp)
+	iOSMatchRegexpCompiled   = utils.CompileRegexps(iOSMatchRegexp)
 )
 
 func NewIOS(p Parser) *IOS {
@@ -27,8 +31,7 @@ func (i *IOS) Name() string {
 }
 
 func (i *IOS) device() string {
-	re := regexp.MustCompile(iOSMatchRegexp[0])
-	matches := re.FindStringSubmatch(i.p.String())
+	matches := iOSMatchRegexpCompiled[0].FindStringSubmatch(i.p.String())
 	if len(matches) > 1 {
 		return matches[1]
 	}
@@ -37,8 +40,7 @@ func (i *IOS) device() string {
 }
 
 func (i *IOS) Version() string {
-	re := regexp.MustCompile(iOSVersionRegexp)
-	matches := re.FindStringSubmatch(i.p.String())
+	matches := iOSVersionRegexpCompiled.FindStringSubmatch(i.p.String())
 	if len(matches) == 0 {
 		return "0"
 	}
@@ -54,5 +56,5 @@ func (i *IOS) Version() string {
 }
 
 func (i *IOS) Match() bool {
-	return i.p.Match(iOSMatchRegexp)
+	return i.p.Match(iOSMatchRegexpCompiled)
 }

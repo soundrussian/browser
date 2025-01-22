@@ -1,12 +1,15 @@
 package devices
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type KindleFire struct {
 	p Parser
 }
 
 var (
-	kindleFireName       = "Kindle Fire"
-	kindleFireMatchRegex = []string{`Kindle Fire|KFTT`}
+	kindleFireName               = "Kindle Fire"
+	kindleFireMatchRegex         = []string{`Kindle Fire|KFTT`}
+	kindleFireMatchRegexCompiled = utils.CompileRegexps(kindleFireMatchRegex)
 )
 
 func NewKindleFire(p Parser) *KindleFire {
@@ -20,5 +23,5 @@ func (k *KindleFire) Name() string {
 }
 
 func (k *KindleFire) Match() bool {
-	return k.p.Match(kindleFireMatchRegex)
+	return k.p.Match(kindleFireMatchRegexCompiled)
 }

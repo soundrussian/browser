@@ -1,13 +1,17 @@
 package matchers
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type Electron struct {
 	p Parser
 }
 
 var (
-	electronName          = "Electron"
-	electronVersionRegexp = []string{`Electron/([\d.]+)`}
-	electronMatchRegex    = []string{`Electron`}
+	electronName                  = "Electron"
+	electronVersionRegexp         = []string{`Electron/([\d.]+)`}
+	electronMatchRegex            = []string{`Electron`}
+	electronVersionRegexpCompiled = utils.CompileRegexps(electronVersionRegexp)
+	electronMatchRegexCompiled    = utils.CompileRegexps(electronMatchRegex)
 )
 
 func NewElectron(p Parser) *Electron {
@@ -21,9 +25,9 @@ func (e *Electron) Name() string {
 }
 
 func (e *Electron) Version() string {
-	return e.p.Version(electronVersionRegexp, 1)
+	return e.p.Version(electronVersionRegexpCompiled, 1)
 }
 
 func (e *Electron) Match() bool {
-	return e.p.Match(electronMatchRegex)
+	return e.p.Match(electronMatchRegexCompiled)
 }

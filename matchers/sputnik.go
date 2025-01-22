@@ -1,13 +1,17 @@
 package matchers
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type Sputnik struct {
 	p Parser
 }
 
 var (
-	sputnikName          = "Sputnik"
-	sputnikVersionRegexp = []string{`SputnikBrowser/([\d.]+)`}
-	sputnikMatchRegexp   = []string{`SputnikBrowser`}
+	sputnikName                  = "Sputnik"
+	sputnikVersionRegexp         = []string{`SputnikBrowser/([\d.]+)`}
+	sputnikMatchRegexp           = []string{`SputnikBrowser`}
+	sputnikVersionRegexpCompiled = utils.CompileRegexps(sputnikVersionRegexp)
+	sputnikMatchRegexpCompiled   = utils.CompileRegexps(sputnikMatchRegexp)
 )
 
 func NewSputnik(p Parser) *Sputnik {
@@ -21,9 +25,9 @@ func (s *Sputnik) Name() string {
 }
 
 func (s *Sputnik) Version() string {
-	return s.p.Version(sputnikVersionRegexp, 1)
+	return s.p.Version(sputnikVersionRegexpCompiled, 1)
 }
 
 func (s *Sputnik) Match() bool {
-	return s.p.Match(sputnikMatchRegexp)
+	return s.p.Match(sputnikMatchRegexpCompiled)
 }

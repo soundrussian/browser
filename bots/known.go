@@ -8,12 +8,17 @@ import (
 // It is used for bots that are known to be bots
 type Known struct {
 	userAgent  string
-	bots       map[string]string
+	bots       map[string]BotMatchInfo
 	matchedBot string
 }
 
+type BotMatchInfo struct {
+	Name   string
+	Regexp *regexp.Regexp
+}
+
 // NewKnown returns a new Known bot.
-func NewKnown(userAgent string, bots map[string]string) *Known {
+func NewKnown(userAgent string, bots map[string]BotMatchInfo) *Known {
 	return &Known{
 		userAgent: userAgent,
 		bots:      bots,
@@ -35,10 +40,9 @@ func (k *Known) Match() bool {
 		return true
 	}
 
-	for b, n := range k.bots {
-		rg := regexp.MustCompile(`(?i)` + b)
-		if rg.MatchString(k.userAgent) {
-			k.matchedBot = n
+	for _, n := range k.bots {
+		if n.Regexp.MatchString(k.userAgent) {
+			k.matchedBot = n.Name
 			return true
 		}
 	}
@@ -47,4 +51,17 @@ func (k *Known) Match() bool {
 
 func (k *Known) matched() bool {
 	return k.matchedBot != ""
+}
+
+func CompileKnownBots(data map[string]string) map[string]BotMatchInfo {
+	res := map[string]BotMatchInfo{}
+
+	for bot, name := range data {
+		res[bot] = BotMatchInfo{
+			Name:   name,
+			Regexp: regexp.MustCompile(`(?i)` + bot),
+		}
+	}
+
+	return res
 }
