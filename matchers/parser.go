@@ -7,8 +7,8 @@ import (
 // Parser is an interface for user agent parsers.
 type Parser interface {
 	String() string
-	Version([]string, int) string
-	Match([]string) bool
+	Version([]*regexp.Regexp, int) string
+	Match([]*regexp.Regexp) bool
 }
 
 // compile time check if UAParser implements Parser interface
@@ -32,10 +32,9 @@ func (b UAParser) String() string {
 // The pattern is a list of regular expressions.
 // The order is the index of the match group in the regular expression.
 // If the order is greater than the number of matches, it returns "0.0".
-func (b UAParser) Version(patterns []string, order int) string {
+func (b UAParser) Version(patterns []*regexp.Regexp, order int) string {
 	for _, pattern := range patterns {
-		re := regexp.MustCompile(pattern)
-		matches := re.FindStringSubmatch(b.userAgent)
+		matches := pattern.FindStringSubmatch(b.userAgent)
 
 		if len(matches) > order {
 			return matches[order]
@@ -46,9 +45,9 @@ func (b UAParser) Version(patterns []string, order int) string {
 
 // Match returns true if the user agent matches the pattern.
 // The pattern is a list of regular expressions.
-func (b UAParser) Match(patterns []string) bool {
+func (b UAParser) Match(patterns []*regexp.Regexp) bool {
 	for _, pattern := range patterns {
-		if regexp.MustCompile(pattern).MatchString(b.userAgent) {
+		if pattern.MatchString(b.userAgent) {
 			return true
 		}
 	}

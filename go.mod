@@ -1,4 +1,4 @@
-module github.com/soundrussian/browser
+module github.com/soundrussian/browser/v2
 
 go 1.19
 

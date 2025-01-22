@@ -342,6 +342,14 @@ func TestDeviceIsMobile(t *testing.T) {
 				So(d.IsMobile(), ShouldBeFalse)
 			})
 		})
+
+		Convey("When UserAgent is very short", func() {
+			Convey("It returns false", func() {
+				smallString := "a"
+				d, _ := NewDevice(smallString)
+				So(d.IsMobile(), ShouldBeFalse)
+			})
+		})
 	})
 }
 

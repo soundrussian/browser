@@ -1,13 +1,17 @@
 package matchers
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type Nintendo struct {
 	p Parser
 }
 
 var (
-	nintendoName          = "Nintendo"
-	nintendoVersionRegexp = []string{`NintendoBrowser/([\d.]+)`}
-	nintendoMatchRegexp   = []string{`NintendoBrowser`}
+	nintendoName                  = "Nintendo"
+	nintendoVersionRegexp         = []string{`NintendoBrowser/([\d.]+)`}
+	nintendoMatchRegexp           = []string{`NintendoBrowser`}
+	nintendoVersionRegexpCompiled = utils.CompileRegexps(nintendoVersionRegexp)
+	nintendoMatchRegexpCompiled   = utils.CompileRegexps(nintendoMatchRegexp)
 )
 
 func NewNintendo(p Parser) *Nintendo {
@@ -21,9 +25,9 @@ func (n *Nintendo) Name() string {
 }
 
 func (n *Nintendo) Version() string {
-	return n.p.Version(nintendoVersionRegexp, 1)
+	return n.p.Version(nintendoVersionRegexpCompiled, 1)
 }
 
 func (n *Nintendo) Match() bool {
-	return n.p.Match(nintendoMatchRegexp)
+	return n.p.Match(nintendoMatchRegexpCompiled)
 }

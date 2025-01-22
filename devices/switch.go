@@ -1,12 +1,15 @@
 package devices
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type Switch struct {
 	p Parser
 }
 
 var (
-	switchName       = "Nintendo Switch"
-	switchMatchRegex = []string{`(?i)Nintendo Switch`}
+	switchName               = "Nintendo Switch"
+	switchMatchRegex         = []string{`(?i)Nintendo Switch`}
+	switchMatchRegexCompiled = utils.CompileRegexps(switchMatchRegex)
 )
 
 func NewSwitch(p Parser) *Switch {
@@ -20,5 +23,5 @@ func (s *Switch) Name() string {
 }
 
 func (s *Switch) Match() bool {
-	return s.p.Match(switchMatchRegex)
+	return s.p.Match(switchMatchRegexCompiled)
 }

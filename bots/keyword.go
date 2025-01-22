@@ -8,7 +8,8 @@ type Keyword struct {
 }
 
 var (
-	keywordMatchRegex = `(?i)(?:crawl|fetch|search|monitoring|spider|bot)`
+	keywordMatchRegex         = `(?i)(?:crawl|fetch|search|monitoring|spider|bot)`
+	keywordMatchRegexCompiled = regexp.MustCompile(keywordMatchRegex)
 )
 
 // NewKeyword returns a new Keyword bot.
@@ -25,5 +26,5 @@ func (k *Keyword) Name() string {
 
 // Match returns true if the user agent contains a keyword.
 func (k *Keyword) Match() bool {
-	return regexp.MustCompile(keywordMatchRegex).MatchString(k.userAgent)
+	return keywordMatchRegexCompiled.MatchString(k.userAgent)
 }

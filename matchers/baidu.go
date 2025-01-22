@@ -1,13 +1,17 @@
 package matchers
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type Baidu struct {
 	p Parser
 }
 
 var (
-	baiduName          = "Baidu"
-	baiduVersionRegexp = []string{`baiduboxapp/([\d.]+)`}
-	baiduMatchRegex    = []string{`(?i)baiduboxapp`}
+	baiduName                  = "Baidu"
+	baiduVersionRegexp         = []string{`baiduboxapp/([\d.]+)`}
+	baiduMatchRegex            = []string{`(?i)baiduboxapp`}
+	baiduVersionRegexpCompiled = utils.CompileRegexps(baiduVersionRegexp)
+	baiduMatchRegexCompiled    = utils.CompileRegexps(baiduMatchRegex)
 )
 
 func NewBaidu(p Parser) *Baidu {
@@ -21,9 +25,9 @@ func (a *Baidu) Name() string {
 }
 
 func (a *Baidu) Version() string {
-	return a.p.Version(baiduVersionRegexp, 1)
+	return a.p.Version(baiduVersionRegexpCompiled, 1)
 }
 
 func (a *Baidu) Match() bool {
-	return a.p.Match(baiduMatchRegex)
+	return a.p.Match(baiduMatchRegexCompiled)
 }

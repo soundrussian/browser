@@ -1,13 +1,17 @@
 package matchers
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type Alipay struct {
 	p Parser
 }
 
 var (
-	aliPayName          = "Alipay"
-	aliPayVersionRegexp = []string{`AlipayClient(?:HK)?/([\d.]+)`}
-	aliPayMatchRegex    = []string{`(?i)Alipay`}
+	aliPayName                  = "Alipay"
+	aliPayVersionRegexp         = []string{`AlipayClient(?:HK)?/([\d.]+)`}
+	aliPayMatchRegex            = []string{`(?i)Alipay`}
+	aliPayVersionRegexpCompiled = utils.CompileRegexps(aliPayVersionRegexp)
+	aliPayMatchRegexCompiled    = utils.CompileRegexps(aliPayMatchRegex)
 )
 
 func NewAlipay(p Parser) *Alipay {
@@ -21,9 +25,9 @@ func (a *Alipay) Name() string {
 }
 
 func (a *Alipay) Version() string {
-	return a.p.Version(aliPayVersionRegexp, 1)
+	return a.p.Version(aliPayVersionRegexpCompiled, 1)
 }
 
 func (a *Alipay) Match() bool {
-	return a.p.Match(aliPayMatchRegex)
+	return a.p.Match(aliPayMatchRegexCompiled)
 }

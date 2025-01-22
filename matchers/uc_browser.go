@@ -1,13 +1,17 @@
 package matchers
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type UCBrowser struct {
 	p Parser
 }
 
 var (
-	ucBrowserName          = "UCBrowser"
-	ucBrowserVersionRegexp = []string{`UCBrowser/([\d.]+)`, `UCWEB(?:/)?([\d.]+)`}
-	ucBrowserMatchRegexp   = []string{`UC(Browser|WEB)`}
+	ucBrowserName                  = "UCBrowser"
+	ucBrowserVersionRegexp         = []string{`UCBrowser/([\d.]+)`, `UCWEB(?:/)?([\d.]+)`}
+	ucBrowserMatchRegexp           = []string{`UC(Browser|WEB)`}
+	ucBrowserVersionRegexpCompiled = utils.CompileRegexps(ucBrowserVersionRegexp)
+	ucBrowserMatchRegexpCompiled   = utils.CompileRegexps(ucBrowserMatchRegexp)
 )
 
 func NewUCBrowser(p Parser) *UCBrowser {
@@ -21,9 +25,9 @@ func (u *UCBrowser) Name() string {
 }
 
 func (u *UCBrowser) Version() string {
-	return u.p.Version(ucBrowserVersionRegexp, 1)
+	return u.p.Version(ucBrowserVersionRegexpCompiled, 1)
 }
 
 func (u *UCBrowser) Match() bool {
-	return u.p.Match(ucBrowserMatchRegexp)
+	return u.p.Match(ucBrowserMatchRegexpCompiled)
 }

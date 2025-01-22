@@ -1,13 +1,17 @@
 package matchers
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type YaaniBrowser struct {
 	p Parser
 }
 
 var (
-	yaaniBrowserName          = "Yaani Browser"
-	yaaniBrowserVersionRegexp = []string{`YaaniBrowser/([\d.]+)`, `Turkcell-YaaniBrowser/([\d.]+)`, `Chrome/([\d.]+)`}
-	yaaniBrowserMatchRegex    = []string{`YaaniBrowser`}
+	yaaniBrowserName                  = "Yaani Browser"
+	yaaniBrowserVersionRegexp         = []string{`YaaniBrowser/([\d.]+)`, `Turkcell-YaaniBrowser/([\d.]+)`, `Chrome/([\d.]+)`}
+	yaaniBrowserMatchRegex            = []string{`YaaniBrowser`}
+	yaaniBrowserVersionRegexpCompiled = utils.CompileRegexps(yaaniBrowserVersionRegexp)
+	yaaniBrowserMatchRegexCompiled    = utils.CompileRegexps(yaaniBrowserMatchRegex)
 )
 
 func NewYaaniBrowser(p Parser) *YaaniBrowser {
@@ -21,9 +25,9 @@ func (y *YaaniBrowser) Name() string {
 }
 
 func (y *YaaniBrowser) Version() string {
-	return y.p.Version(yaaniBrowserVersionRegexp, 1)
+	return y.p.Version(yaaniBrowserVersionRegexpCompiled, 1)
 }
 
 func (y *YaaniBrowser) Match() bool {
-	return y.p.Match(yaaniBrowserMatchRegex)
+	return y.p.Match(yaaniBrowserMatchRegexCompiled)
 }

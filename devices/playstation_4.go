@@ -1,12 +1,15 @@
 package devices
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type PlayStation4 struct {
 	p Parser
 }
 
 var (
-	playStation4Name       = "PlayStation 4"
-	playStation4MatchRegex = []string{`(?i)PLAYSTATION 4`}
+	playStation4Name               = "PlayStation 4"
+	playStation4MatchRegex         = []string{`(?i)PLAYSTATION 4`}
+	playStation4MatchRegexCompiled = utils.CompileRegexps(playStation4MatchRegex)
 )
 
 func NewPlayStation4(p Parser) *PlayStation4 {
@@ -20,5 +23,5 @@ func (p *PlayStation4) Name() string {
 }
 
 func (p *PlayStation4) Match() bool {
-	return p.p.Match(playStation4MatchRegex)
+	return p.p.Match(playStation4MatchRegexCompiled)
 }

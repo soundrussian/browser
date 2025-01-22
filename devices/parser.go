@@ -3,7 +3,7 @@ package devices
 import "regexp"
 
 type Parser interface {
-	Match([]string) bool
+	Match([]*regexp.Regexp) bool
 	String() string
 }
 
@@ -25,11 +25,10 @@ func (u UAParser) String() string {
 }
 
 // match returns true if the user agent matches the pattern.
-// The pattern is a list of regular expressions.
-func (u UAParser) Match(pattern []string) bool {
+// The pattern is a list of compiled regular expressions.
+func (u UAParser) Match(pattern []*regexp.Regexp) bool {
 	for _, p := range pattern {
-		re := regexp.MustCompile(p)
-		if re.MatchString(u.userAgent) {
+		if p.MatchString(u.userAgent) {
 			return true
 		}
 	}

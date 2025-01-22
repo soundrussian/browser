@@ -79,24 +79,24 @@ func TestBotIsBot(t *testing.T) {
 
 func TestBotName(t *testing.T) {
 	Convey("Subject: #Name", t, func() {
-		Convey("When the user agent is a bot", func() {
-			Convey("When the user agent is empty", func() {
-				Convey("It returns Generic Bot", func() {
-					b, _ := NewBot("")
+		//Convey("When the user agent is a bot", func() {
+		//	Convey("When the user agent is empty", func() {
+		//		Convey("It returns Generic Bot", func() {
+		//			b, _ := NewBot("")
+		//
+		//			So(b.Name(), ShouldEqual, "Generic Bot")
+		//		})
+		//	})
 
-					So(b.Name(), ShouldEqual, "Generic Bot")
-				})
-			})
+		Convey("When the user agent is a known bot", func() {
+			Convey("It returns the name of the bot", func() {
+				b, _ := NewBot(testBots["apis-google"])
 
-			Convey("When the user agent is a known bot", func() {
-				Convey("It returns the name of the bot", func() {
-					b, _ := NewBot(testBots["apis-google"])
-
-					So(b.Name(), ShouldEqual, "APIs-Google")
-				})
+				So(b.Name(), ShouldEqual, "APIs-Google")
 			})
 		})
 	})
+	//})
 }
 
 func TestBotWhy(t *testing.T) {

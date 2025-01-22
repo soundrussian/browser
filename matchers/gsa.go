@@ -1,5 +1,7 @@
 package matchers
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type GoogleSearchApp struct {
 	p Parser
 }
@@ -7,8 +9,10 @@ type GoogleSearchApp struct {
 var (
 	googleSearchAppName = "Google Search App"
 	// TODO: review this regex, prev `GSA/([\d.]+)`
-	googleSearchAppVersionRegexp = []string{`GSA/([\d]+(?:\.[\d]+)*)`}
-	googleSearchAppMatchRegex    = []string{`(?i)GSA`}
+	googleSearchAppVersionRegexp         = []string{`GSA/([\d]+(?:\.[\d]+)*)`}
+	googleSearchAppMatchRegex            = []string{`(?i)GSA`}
+	googleSearchAppVersionRegexpCompiled = utils.CompileRegexps(googleSearchAppVersionRegexp)
+	googleSearchAppMatchRegexCompiled    = utils.CompileRegexps(googleSearchAppMatchRegex)
 )
 
 func NewGoogleSearchApp(p Parser) *GoogleSearchApp {
@@ -22,9 +26,9 @@ func (g *GoogleSearchApp) Name() string {
 }
 
 func (g *GoogleSearchApp) Version() string {
-	return g.p.Version(googleSearchAppVersionRegexp, 1)
+	return g.p.Version(googleSearchAppVersionRegexpCompiled, 1)
 }
 
 func (g *GoogleSearchApp) Match() bool {
-	return g.p.Match(googleSearchAppMatchRegex)
+	return g.p.Match(googleSearchAppMatchRegexCompiled)
 }

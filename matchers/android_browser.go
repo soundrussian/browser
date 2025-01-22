@@ -1,14 +1,19 @@
 package matchers
 
-import "strings"
+import (
+	"strings"
+
+	"github.com/soundrussian/browser/v2/utils"
+)
 
 type AndroidBrowser struct {
 	p Parser
 }
 
 var (
-	androidBrowserName          = "Android Browser"
-	androidBrowserVersionRegexp = []string{`Version/([\d.]+)`}
+	androidBrowserName                  = "Android Browser"
+	androidBrowserVersionRegexp         = []string{`Version/([\d.]+)`}
+	androidBrowserVersionRegexpCompiled = utils.CompileRegexps(androidBrowserVersionRegexp)
 )
 
 func NewAndroidBrowser(p Parser) *AndroidBrowser {
@@ -22,7 +27,7 @@ func (b *AndroidBrowser) Name() string {
 }
 
 func (b *AndroidBrowser) Version() string {
-	return b.p.Version(androidBrowserVersionRegexp, 1)
+	return b.p.Version(androidBrowserVersionRegexpCompiled, 1)
 }
 
 func (b *AndroidBrowser) Match() bool {

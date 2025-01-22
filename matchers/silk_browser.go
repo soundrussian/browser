@@ -1,5 +1,7 @@
 package matchers
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type SilkBrowser struct {
 	p Parser
 }
@@ -11,7 +13,9 @@ var (
 		`Chrome/([\d.]+)`,
 		`Safari/([\d.]+)`,
 	}
-	silkBrowserMatchRegex = []string{`Silk/`}
+	silkBrowserMatchRegex           = []string{`Silk/`}
+	silkBrowserVersionRegexCompiled = utils.CompileRegexps(silkBrowserVersionRegex)
+	silkBrowserMatchRegexCompiled   = utils.CompileRegexps(silkBrowserMatchRegex)
 )
 
 func NewSilkBrowser(p Parser) *SilkBrowser {
@@ -25,9 +29,9 @@ func (s *SilkBrowser) Name() string {
 }
 
 func (s *SilkBrowser) Version() string {
-	return s.p.Version(silkBrowserVersionRegex, 1)
+	return s.p.Version(silkBrowserVersionRegexCompiled, 1)
 }
 
 func (s *SilkBrowser) Match() bool {
-	return s.p.Match(silkBrowserMatchRegex)
+	return s.p.Match(silkBrowserMatchRegexCompiled)
 }

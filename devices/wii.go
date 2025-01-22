@@ -1,12 +1,15 @@
 package devices
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type Wii struct {
 	p Parser
 }
 
 var (
-	wiiName       = "Nintendo Wii"
-	wiiMatchRegex = []string{`(?i)Nintendo Wii`}
+	wiiName               = "Nintendo Wii"
+	wiiMatchRegex         = []string{`(?i)Nintendo Wii`}
+	wiiMatchRegexCompiled = utils.CompileRegexps(wiiMatchRegex)
 )
 
 func NewWii(p Parser) *Wii {
@@ -20,5 +23,5 @@ func (w *Wii) Name() string {
 }
 
 func (w *Wii) Match() bool {
-	return w.p.Match(wiiMatchRegex)
+	return w.p.Match(wiiMatchRegexCompiled)
 }

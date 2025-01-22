@@ -1,12 +1,15 @@
 package devices
 
+import "github.com/soundrussian/browser/v2/utils"
+
 type PSP struct {
 	p Parser
 }
 
 var (
-	pspName       = "PlayStation Portable"
-	pspMatchRegex = []string{`(?i)PlayStation Portable`}
+	pspName               = "PlayStation Portable"
+	pspMatchRegex         = []string{`(?i)PlayStation Portable`}
+	pspMatchRegexCompiled = utils.CompileRegexps(pspMatchRegex)
 )
 
 func NewPSP(p Parser) *PSP {
@@ -20,5 +23,5 @@ func (p *PSP) Name() string {
 }
 
 func (p *PSP) Match() bool {
-	return p.p.Match(pspMatchRegex)
+	return p.p.Match(pspMatchRegexCompiled)
 }
