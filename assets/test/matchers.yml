@@ -1,4 +1,7 @@
 ---
+aloha-browser:
+  android: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36 AlohaBrowser/5.10.0
+  ios: Mozilla/5.0 (iPhone; CPU iPhone OS 18_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Version/18.7.1 Safari/605.1.15 AlohaBrowser/7.11.2
 alipay:
   android: Mozilla/5.0 (Linux; Android 7.1.1; Nexus 5 Build/NMF26V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/55.0.2883.105 Mobile Safari/537.36 Nebula AlipayDefined(nt:WIFI,ws:360|0|3.0) AliApp(APHK/1.7.0.123008) AlipayClientHK/1.7.0.123008 Language/zh-HK useStatusBar/true
   ios: Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13E230 ChannelId(3) Nebula PSDType(1) AlipayDefined(nt:WIFI,ws:320|504|2.0) AliApp(AP/9.9.0.000001) AlipayClient/9.9.0.000001 Language/zh-Hans ProductType/dev
@@ -45,11 +48,11 @@ electron:
   mac: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Franz/0.9.8 Chrome/47.0.2526.110 Electron/0.36.9 Safari/537.36
   windows: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Electron/0.36.4 Safari/537.36
 firefox:
- android: Mozilla/5.0 (Android 8.0.0; Mobile; rv:59.0.2) Gecko/59.0.2 Firefox/59.0.2
- ios: Mozilla/5.0 (iPhone; CPU iPhone OS 12_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/7.0.4 Mobile/16A404 Safari/605.1.15
- linux: Mozilla/5.0 (Linux; U; Linux 2.6; en-US; rv:1.9.9.2) Gecko/20100722 Firefox/3.6.8
- mac: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14_1; rv:64.0) Gecko/20100101 Firefox/64.0
- windows: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.8) Gecko/20100722 AskTbBLT/3.8.0.12304 Firefox/3.6.8 GTB7.1
+  android: Mozilla/5.0 (Android 8.0.0; Mobile; rv:59.0.2) Gecko/59.0.2 Firefox/59.0.2
+  ios: Mozilla/5.0 (iPhone; CPU iPhone OS 12_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/7.0.4 Mobile/16A404 Safari/605.1.15
+  linux: Mozilla/5.0 (Linux; U; Linux 2.6; en-US; rv:1.9.9.2) Gecko/20100722 Firefox/3.6.8
+  mac: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14_1; rv:64.0) Gecko/20100101 Firefox/64.0
+  windows: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.8) Gecko/20100722 AskTbBLT/3.8.0.12304 Firefox/3.6.8 GTB7.1
 gsa:
   android: Mozilla/5.0 (LINUX; ANDROID 4.4.2; LG-X135 Build/KOT49H.V10c) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 MOBILE Safari/537.36 GSA/5.10.32.19.arm
   ios: Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) GSA/7.0.55539 Mobile/12H321 Safari/600.1.4
